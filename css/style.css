@@ -1,3 +1,4 @@
+/* Estilos do Header */
 .header {
     display: flex;
     align-items: center;
@@ -14,47 +15,170 @@ h1 {
     font-size: 36px;
 }
 
+/* Estilos do corpo */
 body {
     display: flex;
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
+
+/* Sidebar */
 .sidebar {
     height: 100vh;
     width: 250px;
     background-color: #f8f9fa;
     padding: 20px;
     position: fixed;
+    top: 0;
+    left: 0;
+    transition: all 0.3s ease;
+    z-index: 1000;
 }
+
 .content {
     margin-left: 250px;
     padding: 20px;
     width: 100%;
 }
+
+/* Navbar - Menu Lateral */
 .nav-pills .nav-link {
     border-radius: 0;
 }
+
+/* Tamanhos das abas */
 .tab-content {
     margin-top: 20px;
 }
+
+/* Abas invisíveis até ativar */
 .tab-pane {
     display: none;
 }
+
 .tab-pane.active {
     display: block;
 }
+
+/* Ajuste das listas */
 .list-group-item {
     display: flex;
     justify-content: space-between;
 }
-/* Melhorando a acessibilidade */
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
+
+/* Estilo para o Menu Hamburguer */
+.sidebar .menu-toggle {
+    display: none;
+}
+
+.sidebar .nav {
+    display: flex;
+    flex-direction: column;
     padding: 0;
-    border: 0;
-    clip: rect(0, 0, 0, 0);
-    clip-path: inset(50%);
-    white-space: nowrap;
+    margin-top: 20px;
+}
+
+.sidebar .nav-item {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 991px) {
+    /* Esconde a sidebar em telas menores */
+    .sidebar {
+        position: fixed;
+        left: -250px; /* Sidebar começa fora da tela */
+    }
+
+    .content {
+        margin-left: 0;
+    }
+
+    /* Menu hamburguer */
+    .sidebar .menu-toggle {
+        display: block;
+        cursor: pointer;
+        font-size: 30px;
+        color: #333;
+    }
+
+    /* Exibe a sidebar quando o menu hamburguer for ativado */
+    .sidebar.active {
+        left: 0;
+    }
+
+    /* Ajustando a logo e título no cabeçalho */
+    .header {
+        justify-content: space-between;
+    }
+
+    .logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    /* Ajustando os itens do menu de navegação */
+    .nav-pills .nav-link {
+        padding: 10px;
+    }
+
+    /* Ajuste para as abas */
+    .tab-content {
+        padding: 10px;
+    }
+
+    /* Ajustando os formulários */
+    .form-control,
+    .form-select {
+        width: 100%;
+    }
+}
+
+/* Responsividade total para telas pequenas */
+@media (max-width: 576px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .sidebar {
+        width: 200px;
+        padding: 10px;
+    }
+
+    .content {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    /* Ajuste nas margens e tamanhos dos elementos */
+    .list-group-item {
+        font-size: 14px;
+    }
+
+    /* Ajuste do botão de adicionar */
+    .btn {
+        font-size: 14px;
+    }
+}
+
+/* Estilos para o botão de esconder/mostrar o menu hamburguer */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 30px;
+    color: #333;
+}
+
+/* Mostrar lista do menu hamburguer ao ser ativada */
+.sidebar.active {
+    left: 0;
 }
 

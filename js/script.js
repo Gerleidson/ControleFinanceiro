@@ -335,3 +335,7 @@ function generatePdf() {
     // Salvar o PDF com o nome do mês atual
     doc.save(`Relatorio_${currentMonth}.pdf`);
 }
+
+function toggleSidebar() {
+    document.querySelector('.sidebar').classList.toggle('active');
+}
