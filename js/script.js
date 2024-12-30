@@ -308,20 +308,28 @@ function generatePdf() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
 
+    // Chama a função de atualizar o relatório antes de gerar o PDF
+    updateRelatorio();
+
     // Obter o mês atual (0 a 11, janeiro é 0)
     const currentMonth = new Date().toLocaleString('default', { month: 'long' });
 
-    doc.text(`Relatório de Geral`, 10, 10);
+    // Adiciona os dados no PDF
+    doc.text(`Relatório Geral`, 10, 10);
+    
+    // Adicionando valores de gastos
     doc.text(`Total de Gastos: R$ ${document.getElementById('total-gastos').innerText}`, 10, 20);
     doc.text(`Pix: R$ ${document.getElementById('gastos-pix').innerText}`, 10, 30);
     doc.text(`Dinheiro: R$ ${document.getElementById('gastos-dinheiro').innerText}`, 10, 40);
     doc.text(`Cartão: R$ ${document.getElementById('gastos-cartao').innerText}`, 10, 50);
 
+    // Adicionando valores de vendas
     doc.text(`Total de Vendas: R$ ${document.getElementById('total-vendas').innerText}`, 10, 60);
     doc.text(`Pix: R$ ${document.getElementById('vendas-pix').innerText}`, 10, 70);
     doc.text(`Dinheiro: R$ ${document.getElementById('vendas-dinheiro').innerText}`, 10, 80);
     doc.text(`Cartão: R$ ${document.getElementById('vendas-cartao').innerText}`, 10, 90);
 
+    // Adicionando lucro
     doc.text(`Lucro: R$ ${document.getElementById('lucro').innerText}`, 10, 100);
 
     // Salvar o PDF com o nome do mês atual
