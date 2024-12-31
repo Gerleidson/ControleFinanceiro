@@ -63,15 +63,19 @@
         <main>
             <div class="content">
                 <div class="tab-content">
-                    <!-- Abas de Meses (apenas uma vez) -->
+                    <!-- Abas de Meses -->
                     <ul class="nav nav-tabs" id="monthTabs" role="tablist">
-                        <!-- Gerar abas dos meses -->
                         <script>
                             const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+                            const monthTabs = document.getElementById('monthTabs');
                             months.forEach((month, index) => {
-                                document.write(`<li class='nav-item' role='presentation'>
-                                    <button class='nav-link ${index === 0 ? 'active' : ''}' id='tab-${index}' data-bs-toggle='tab' data-bs-target='#content-${index}' type='button' role='tab'>${month}</button>
-                                </li>`);
+                                const li = document.createElement('li');
+                                li.className = 'nav-item';
+                                li.setAttribute('role', 'presentation');
+                                li.innerHTML = `
+                                    <button class="nav-link ${index === 0 ? 'active' : ''}" id="tab-${index}" data-bs-toggle="tab" data-bs-target="#content-${index}" type="button" role="tab">${month}</button>
+                                `;
+                                monthTabs.appendChild(li);
                             });
                         </script>
                     </ul>
@@ -80,7 +84,6 @@
                     <div class="tab-pane gastos show active" id="gastos">
                         <div class="bg-light p-5 rounded shadow-sm">
                             <div class="row">
-                                <!-- Gastos -->
                                 <div class="col-md-6">
                                     <form id="gastos-form">
                                         <h3>Gastos do Mês</h3>
@@ -108,8 +111,6 @@
                                     </form>
                                     <ul class="list-group mt-3" id="gastos-list"></ul>
                                 </div>
-        
-                                <!-- Relatório de Gastos -->
                                 <div class="col-md-6">
                                     <div class="card" style="max-width: 350px; margin-top: 20px;">
                                         <div class="card-body" style="background-color: #177c91; color: #fff;">
@@ -131,7 +132,6 @@
                     <div class="tab-pane vendas" id="vendas">
                         <div class="bg-light p-5 rounded shadow-sm">
                             <div class="row">
-                                <!-- Vendas -->
                                 <div class="col-md-6">
                                     <form id="vendas-form">
                                         <h3>Vendas do Mês</h3>
@@ -159,8 +159,6 @@
                                     </form>
                                     <ul class="list-group mt-3" id="vendas-list"></ul>
                                 </div>
-        
-                                <!-- Relatório de Vendas -->
                                 <div class="col-md-6">
                                     <div class="card" style="max-width: 350px; margin-top: 20px;">
                                         <div class="card-body" style="background-color: #177c91; color: #fff;">
@@ -182,7 +180,6 @@
                     <div class="tab-pane despesas" id="despesas">
                         <div class="bg-light p-5 rounded shadow-sm">
                             <div class="row">
-
                                 <form id="despesas-form">
                                     <h3>Despesas do Mês</h3>
                                     <div class="mb-3">
@@ -226,7 +223,6 @@
                     <div class="tab-pane relatorio" id="relatorio">
                         <div class="bg-light p-5 rounded shadow-sm">
                             <div class="row">
-                                <!-- Cards para Relatórios de Gastos, Vendas e Lucro -->
                                 <div class="col-md-4 col-sm-12">
                                     <div class="card">
                                         <div class="card-body" style="background-color: #177c91; color: #fff;">
@@ -270,6 +266,8 @@
                 </div>
             </div>
         </main>
+        
+        
         
     <!-- Footer -->
     <footer class="bg-black text-center py-4">
