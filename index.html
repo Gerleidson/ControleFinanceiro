@@ -27,238 +27,254 @@
     </head>
 
 <body>
-    <div class="sidebar">
-        
-        <h3>Menu</h3>
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <button class="nav-link active" onclick="showTab('gastos')">Gastos</button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-link" onclick="showTab('vendas')">Vendas</button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-link" onclick="showTab('despesas')">Despesas</button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-link" onclick="showTab('metas')">Metas</button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-link" onclick="showTab('relatorio')">Relatório</button>
-            </li>
-        </ul>
-    </div>
-
-    <div class="content">
-        <div class="header">
+    
+        <div class="header"  style="margin-top: 0;">
             <img src="img/logo.png" alt="Logo" class="logo">
             <h1>Controle Financeiro</h1>
-        </div>        
-        <div class="tab-content">
-            <!-- Formulário de Gastos -->
-            <div class="tab-pane gastos active" id="gastos">
-                <ul class="nav nav-tabs" id="monthTabs" role="tablist">
-                    <!-- Gerar abas dos meses -->
-                    <script>
-                        const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-                        months.forEach((month, index) => {
-                            document.write(`<li class='nav-item' role='presentation'>
-                                <button class='nav-link ${index === 0 ? 'active' : ''}' id='tab-${index}' data-bs-toggle='tab' data-bs-target='#content-${index}' type='button' role='tab'>${month}</button>
-                            </li>`);
-                        });
-                    </script>
-                </ul>
-                
-                <div class="row">
-                    <!-- Gastos -->
-                    <div class="col-md-6">
-                        <form id="gastos-form">
-                            <h3>Gastos do Mês</h3>
-                            <div class="mb-3">
-                                <label for="gasto-produto" class="form-label">Produto</label>
-                                <input type="text" id="gasto-produto" class="form-control" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="gasto-unitario" class="form-label">Valor Unitário</label>
-                                <input type="number" id="gasto-unitario" class="form-control" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="gasto-quantidade" class="form-label">Quantidade</label>
-                                <input type="number" id="gasto-quantidade" class="form-control" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="gasto-pagamento" class="form-label">Método de Pagamento</label>
-                                <select id="gasto-pagamento" class="form-select">
-                                    <option value="pix">Pix</option>
-                                    <option value="dinheiro">Dinheiro</option>
-                                    <option value="cartao">Cartão</option>
-                                </select>
-                            </div>
-                            <button type="button" class="btn btn-primary" onclick="addGasto()">Adicionar</button>
-                        </form>
-                        <ul class="list-group mt-3" id="gastos-list"></ul>
-                    </div>
-
-                    <!-- Relatório de Gastos -->
-                    <div class="col-md-6">
-                        <div id="relatorio-gastos">
-                            <h2>Total de Gastos: R$ <span id="total-gastos">0,00</span></h2>
-                            <p>Pix: R$ <span id="gastos-pix">0,00</span></p>
-                            <p>Dinheiro: R$ <span id="gastos-dinheiro">0,00</span></p>
-                            <p>Cartão: R$ <span id="gastos-cartao">0,00</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Formulário de Vendas -->
-            <div class="tab-pane vendas " id="vendas">
-                <ul class="nav nav-tabs" id="monthTabs" role="tablist">
-                <!-- Gerar abas dos meses -->
-                    <script>
-                        months.forEach((month, index) => {
-                            document.write(`<li class='nav-item' role='presentation'>
-                                <button class='nav-link ${index === 0 ? 'active' : ''}' id='tab-${index}' data-bs-toggle='tab' data-bs-target='#content-${index}' type='button' role='tab'>${month}</button>
-                            </li>`);
-                        });
-                    </script>
-                </ul>
-                
-                <div class="row">
-                    <!-- Gastos -->
-                    <div class="col-md-6">
-                        <form id="gastos-form">
-                            <h3>Vendas do Mês</h3>
-                            <div class="mb-3">
-                                <label for="vendas-produto" class="form-label">Produto</label>
-                                <input type="text" id="vendas-produto" class="form-control" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="vendas-unitario" class="form-label">Valor Unitário</label>
-                                <input type="number" id="vendas-unitario" class="form-control" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="vendas-quantidade" class="form-label">Quantidade</label>
-                                <input type="number" id="vendas-quantidade" class="form-control" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="vendas-pagamento" class="form-label">Método de Pagamento</label>
-                                <select id="vendas-pagamento" class="form-select">
-                                    <option value="pix">Pix</option>
-                                    <option value="dinheiro">Dinheiro</option>
-                                    <option value="cartao">Cartão</option>
-                                </select>
-                            </div>
-                            <button type="button" class="btn btn-primary" onclick="addVenda()">Adicionar</button>
-                        </form>
-                        <ul class="list-group mt-3" id="vendas-list"></ul>
-                    </div>
-
-                    <!-- Relatório de vendas -->
-                    <div class="col-md-6">
-                        <div id="relatorio-vendas">
-                            <h2>Total de Vendas: R$ <span id="total-vendas">0,00</span></h2>
-                            <p>Pix: R$ <span id="vendas-pix">0,00</span></p>
-                            <p>Dinheiro: R$ <span id="vendas-dinheiro">0,00</span></p>
-                            <p>Cartão: R$ <span id="vendas-cartao">0,00</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Formulário de Despesas -->
-            <div class="tab-pane despesas" id="despesas">
-                <ul class="nav nav-tabs" id="monthTabs" role="tablist">
-                    <!-- Gerar abas dos meses -->
-                    <script>
-                        months.forEach((month, index) => {
-                            document.write(`<li class='nav-item' role='presentation'>
-                                <button class='nav-link ${index === 0 ? 'active' : ''}' id='tab-${index}' data-bs-toggle='tab' data-bs-target='#content-${index}' type='button' role='tab'>${month}</button>
-                            </li>`);
-                        });
-                    </script>
-                </ul>
-                <form id="despesas-form">
-                    <h3>Despesas do Mês</h3>
-                    <div class="mb-3">
-                        <label for="despesa-nome" class="form-label">Nome da Despesa</label>
-                        <input type="text" id="despesa-nome" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="despesa-valor" class="form-label">Valor</label>
-                        <input type="number" id="despesa-valor" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="despesa-vencimento" class="form-label">Data de Vencimento</label>
-                        <input type="date" id="despesa-vencimento" class="form-control" required>
-                    </div>
-                    <button type="button" class="btn btn-danger" onclick="addDespesa()">Adicionar</button>
-                </form>
-                <div class="mt-3">
-                    <p><strong>Total de Despesas:</strong> <span id="total-despesas">R$ 0,00</span></p>
-                </div>
-                <ul class="list-group mt-3" id="despesas-list"></ul>
-            </div>
-
-           <!-- Formulário de Metas -->
-            <div class="tab-pane metas" id="metas">
-                <ul class="nav nav-tabs" id="monthTabs" role="tablist">
-                    <!-- Gerar abas dos meses -->
-                    <script>
-                        months.forEach((month, index) => {
-                            document.write(`<li class='nav-item' role='presentation'>
-                                <button class='nav-link ${index === 0 ? 'active' : ''}' id='tab-${index}' data-bs-toggle='tab' data-bs-target='#content-${index}' type='button' role='tab'>${month}</button>
-                            </li>`);
-                        });
-                    </script>
-                </ul>
-                <form id="metas-form">
-                    <h3>Metas do Mês</h3>
-                    <div class="mb-3">
-                        <label for="meta-nome" class="form-label">Nome da Meta</label>
-                        <input type="text" id="meta-nome" class="form-control" required>
-                    </div>
-                    <button type="button" class="btn btn-warning" onclick="addMeta()">Adicionar</button>
-                </form>
-                <ul class="list-group mt-3" id="metas-list"></ul>
-            </div>
-
-            <!-- Relatório Geral -->
-            <div class="tab-pane relatorio" id="relatorio">
-                <ul class="nav nav-tabs" id="monthTabs" role="tablist">
-                    <!-- Gerar abas dos meses -->
-                    <script>
-                        months.forEach((month, index) => {
-                            document.write(`<li class='nav-item' role='presentation'>
-                                <button class='nav-link ${index === 0 ? 'active' : ''}' id='tab-${index}' data-bs-toggle='tab' data-bs-target='#content-${index}' type='button' role='tab'>${month}</button>
-                            </li>`);
-                        });
-                    </script>
-                </ul>
-
-                <h2>Relatório Geral</h2>
-                <div id="relatorio-gastos">
-                    <h5>Total de Gastos: R$ <span id="total-gastos">0,00</span></h5>
-                    <p>Pix: R$ <span id="gastos-pix">0,00</span></p>
-                    <p>Dinheiro: R$ <span id="gastos-dinheiro">0,00</span></p>
-                    <p>Cartão: R$ <span id="gastos-cartao">0,00</span></p>
-                </div>
-
-                <div id="relatorio-vendas">
-                    <h5>Total de vendas: R$ <span id="total-vendas">0,00</span></h5>
-                    <p>Pix: R$ <span id="vendas-pix">0,00</span></p>
-                    <p>Dinheiro: R$ <span id="vendas-dinheiro">0,00</span></p>
-                    <p>Cartão: R$ <span id="vendas-cartao">0,00</span></p>
-                </div>
-
-                <div id="relatorio-lucro">
-                    <h5>Lucro</h5>
-                    <p>R$ <span id="lucro">0,00</span></p>
-                </div>
-                <button class="btn btn-secondary" onclick="generatePdf('relatorio')">Baixar Relatório PDF</button>
-            </div>
         </div>
-    </div>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto"> 
+                        <li class="nav-item">
+                            <button class="nav-link bg-custom text-white border-0" onclick="showTab('gastos')">Gastos</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link bg-custom text-white border-0" onclick="showTab('vendas')">Vendas</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link bg-custom text-white border-0" onclick="showTab('despesas')">Despesas</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link bg-custom text-white border-0" onclick="showTab('metas')">Metas</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link bg-custom text-white border-0" onclick="showTab('relatorio')">Relatório</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+  
+        <main>
+            <div class="content">
+                <div class="tab-content">
+                    <!-- Abas de Meses (apenas uma vez) -->
+                    <ul class="nav nav-tabs" id="monthTabs" role="tablist">
+                        <!-- Gerar abas dos meses -->
+                        <script>
+                            const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+                            months.forEach((month, index) => {
+                                document.write(`<li class='nav-item' role='presentation'>
+                                    <button class='nav-link ${index === 0 ? 'active' : ''}' id='tab-${index}' data-bs-toggle='tab' data-bs-target='#content-${index}' type='button' role='tab'>${month}</button>
+                                </li>`);
+                            });
+                        </script>
+                    </ul>
+        
+                    <!-- Formulário de Gastos -->
+                    <div class="tab-pane gastos show active" id="gastos">
+                        <div class="bg-light p-5 rounded shadow-sm">
+                            <div class="row">
+                                <!-- Gastos -->
+                                <div class="col-md-6">
+                                    <form id="gastos-form">
+                                        <h3>Gastos do Mês</h3>
+                                        <div class="mb-3">
+                                            <label for="gasto-produto" class="form-label">Produto</label>
+                                            <input type="text" id="gasto-produto" class="form-control" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="gasto-unitario" class="form-label">Valor Unitário</label>
+                                            <input type="number" id="gasto-unitario" class="form-control" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="gasto-quantidade" class="form-label">Quantidade</label>
+                                            <input type="number" id="gasto-quantidade" class="form-control" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="gasto-pagamento" class="form-label">Método de Pagamento</label>
+                                            <select id="gasto-pagamento" class="form-select">
+                                                <option value="pix">Pix</option>
+                                                <option value="dinheiro">Dinheiro</option>
+                                                <option value="cartao">Cartão</option>
+                                            </select>
+                                        </div>
+                                        <button type="button" class="btn btn-primary" onclick="addGasto()">Adicionar</button>
+                                    </form>
+                                    <ul class="list-group mt-3" id="gastos-list"></ul>
+                                </div>
+        
+                                <!-- Relatório de Gastos -->
+                                <div class="col-md-6">
+                                    <div class="card" style="max-width: 350px; margin-top: 20px;">
+                                        <div class="card-body" style="background-color: #177c91; color: #fff;">
+                                            <h5 class="card-title">Relatório de Gastos</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p>Pix: R$ <span id="gastos-pix">0,00</span></p>
+                                            <p>Dinheiro: R$ <span id="gastos-dinheiro">0,00</span></p>
+                                            <p>Cartão: R$ <span id="gastos-cartao">0,00</span></p>
+                                            <h5>Total de Gastos: R$ <span id="total-gastos">0,00</span></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Formulário de Vendas -->
+                    <div class="tab-pane vendas" id="vendas">
+                        <div class="bg-light p-5 rounded shadow-sm">
+                            <div class="row">
+                                <!-- Vendas -->
+                                <div class="col-md-6">
+                                    <form id="vendas-form">
+                                        <h3>Vendas do Mês</h3>
+                                        <div class="mb-3">
+                                            <label for="vendas-produto" class="form-label">Produto</label>
+                                            <input type="text" id="vendas-produto" class="form-control" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="vendas-unitario" class="form-label">Valor Unitário</label>
+                                            <input type="number" id="vendas-unitario" class="form-control" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="vendas-quantidade" class="form-label">Quantidade</label>
+                                            <input type="number" id="vendas-quantidade" class="form-control" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="vendas-pagamento" class="form-label">Método de Pagamento</label>
+                                            <select id="vendas-pagamento" class="form-select">
+                                                <option value="pix">Pix</option>
+                                                <option value="dinheiro">Dinheiro</option>
+                                                <option value="cartao">Cartão</option>
+                                            </select>
+                                        </div>
+                                        <button type="button" class="btn btn-primary" onclick="addVenda()">Adicionar</button>
+                                    </form>
+                                    <ul class="list-group mt-3" id="vendas-list"></ul>
+                                </div>
+        
+                                <!-- Relatório de Vendas -->
+                                <div class="col-md-6">
+                                    <div class="card" style="max-width: 350px; margin-top: 20px;">
+                                        <div class="card-body" style="background-color: #177c91; color: #fff;">
+                                            <h5 class="card-title">Relatório de Vendas</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p>Pix: R$ <span id="vendas-pix">0,00</span></p>
+                                            <p>Dinheiro: R$ <span id="vendas-dinheiro">0,00</span></p>
+                                            <p>Cartão: R$ <span id="vendas-cartao">0,00</span></p>
+                                            <h5>Total de Vendas: R$ <span id="total-vendas">0,00</span></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Formulário de Despesas -->
+                    <div class="tab-pane despesas" id="despesas">
+                        <div class="bg-light p-5 rounded shadow-sm">
+                            <div class="row">
+
+                                <form id="despesas-form">
+                                    <h3>Despesas do Mês</h3>
+                                    <div class="mb-3">
+                                        <label for="despesa-nome" class="form-label">Nome da Despesa</label>
+                                        <input type="text" id="despesa-nome" class="form-control" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="despesa-valor" class="form-label">Valor</label>
+                                        <input type="number" id="despesa-valor" class="form-control" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="despesa-vencimento" class="form-label">Data de Vencimento</label>
+                                        <input type="date" id="despesa-vencimento" class="form-control" required>
+                                    </div>
+                                    <button type="button" class="btn btn-danger" onclick="addDespesa()">Adicionar</button>
+                                </form>
+                                <div class="mt-3">
+                                    <p><strong>Total de Despesas:</strong> <span id="total-despesas">R$ 0,00</span></p>
+                                </div>
+                                <ul class="list-group mt-3" id="despesas-list"></ul>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Formulário de Metas -->
+                    <div class="tab-pane metas" id="metas">
+                        <div class="bg-light p-5 rounded shadow-sm">
+                            <form id="metas-form">
+                                <h3>Metas do Mês</h3>
+                                <div class="mb-3">
+                                    <label for="meta-nome" class="form-label">Nome da Meta</label>
+                                    <input type="text" id="meta-nome" class="form-control" required>
+                                </div>
+                                <button type="button" class="btn btn-warning" onclick="addMeta()">Adicionar</button>
+                            </form>
+                            <ul class="list-group mt-3" id="metas-list"></ul>
+                        </div>
+                    </div>
+        
+                    <!-- Relatório Geral -->
+                    <div class="tab-pane relatorio" id="relatorio">
+                        <div class="bg-light p-5 rounded shadow-sm">
+                            <div class="row">
+                                <!-- Cards para Relatórios de Gastos, Vendas e Lucro -->
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="card">
+                                        <div class="card-body" style="background-color: #177c91; color: #fff;">
+                                            <h5 class="card-title">Relatório de Gastos</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p>Pix: R$ <span id="gastos-pix">0,00</span></p>
+                                            <p>Dinheiro: R$ <span id="gastos-dinheiro">0,00</span></p>
+                                            <p>Cartão: R$ <span id="gastos-cartao">0,00</span></p>
+                                            <p>Total de Gastos: R$ <span id="total-gastos">0,00</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="card">
+                                        <div class="card-body" style="background-color: #177c91; color: #fff;">
+                                            <h5 class="card-title">Relatório de Vendas</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p>Pix: R$ <span id="vendas-pix">0,00</span></p>
+                                            <p>Dinheiro: R$ <span id="vendas-dinheiro">0,00</span></p>
+                                            <p>Cartão: R$ <span id="vendas-cartao">0,00</span></p>
+                                            <p>Total de Vendas: R$ <span id="total-vendas">0,00</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="card">
+                                        <div class="card-body" style="background-color: #177c91; color: #fff;">
+                                            <h5 class="card-title">Relatório de Lucro</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p>Lucro: R$ <span id="lucro">0,00</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" onclick="generatePdf('relatorio')">Baixar Relatório PDF</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+    <!-- Footer -->
+    <footer class="bg-black text-center py-4">
+        <p>&copy; 2024 Controle Financeiro. Todos os direitos reservados.</p>
+    </footer>
 
     <script src="js/script.js"></script>
 </body>

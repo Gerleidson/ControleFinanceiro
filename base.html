@@ -55,307 +55,307 @@
         </ul>
 
         <div class="tab-content mt-3" id="monthTabsContent">
-            <!-- Gerar conteúdo de cada mês -->
-            <script>
-                months.forEach((month, index) => {
-                    document.write(`<div class='tab-pane fade ${index === 0 ? 'show active' : ''}' id='content-${index}' role='tabpanel'>
-                        <div class='row'>
-                            <!-- Gastos -->
+                <!-- Gerar conteúdo de cada mês -->
+                <script>
+                    months.forEach((month, index) => {
+                        document.write(`<div class='tab-pane fade ${index === 0 ? 'show active' : ''}' id='content-${index}' role='tabpanel'>
+                            <div class='row'>
+                                <!-- Gastos -->
+                                    <div class='col-md-3'>
+                                    <h3>Gastos</h3>
+                                    <form id='expenses-form-${index}'>
+                                        <div class='mb-3'>
+                                            <label for='expense-product-${index}' class='form-label'>Produto</label>
+                                            <input type='text' id='expense-product-${index}' class='form-control' required>
+                                        </div>
+                                        <div class='mb-3'>
+                                            <label for='expense-unit-value-${index}' class='form-label'>Valor Unitário</label>
+                                            <input type='number' id='expense-unit-value-${index}' class='form-control' required>
+                                        </div>
+                                        <div class='mb-3'>
+                                            <label for='expense-quantity-${index}' class='form-label'>Quantidade</label>
+                                            <input type='number' id='expense-quantity-${index}' class='form-control' required>
+                                        </div>
+                                        <div class='mb-3'>
+                                            <label for='expense-payment-method-${index}' class='form-label'>Método de Pagamento</label>
+                                            <select id='expense-payment-method-${index}' class='form-select'>
+                                                <option value='pix'>Pix</option>
+                                                <option value='dinheiro'>Dinheiro</option>
+                                                <option value='cartao'>Cartão</option>
+                                            </select>
+                                        </div>
+                                        <button type='button' class='btn btn-primary' onclick='addExpense(${index})'>Adicionar</button>
+                                    </form>
+                                    <ul class='list-group mt-3' id='expenses-list-${index}'></ul>
+                                    <p class='mt-3'><strong>Total de Gastos:</strong> <span id='total-expenses-${index}'>R$ 0,00</span></p>
+                                </div>
+
+                                <!-- Vendas -->
                                 <div class='col-md-3'>
-                                <h3>Gastos</h3>
-                                <form id='expenses-form-${index}'>
-                                    <div class='mb-3'>
-                                        <label for='expense-product-${index}' class='form-label'>Produto</label>
-                                        <input type='text' id='expense-product-${index}' class='form-control' required>
-                                    </div>
-                                    <div class='mb-3'>
-                                        <label for='expense-unit-value-${index}' class='form-label'>Valor Unitário</label>
-                                        <input type='number' id='expense-unit-value-${index}' class='form-control' required>
-                                    </div>
-                                    <div class='mb-3'>
-                                        <label for='expense-quantity-${index}' class='form-label'>Quantidade</label>
-                                        <input type='number' id='expense-quantity-${index}' class='form-control' required>
-                                    </div>
-                                    <div class='mb-3'>
-                                        <label for='expense-payment-method-${index}' class='form-label'>Método de Pagamento</label>
-                                        <select id='expense-payment-method-${index}' class='form-select'>
-                                            <option value='pix'>Pix</option>
-                                            <option value='dinheiro'>Dinheiro</option>
-                                            <option value='cartao'>Cartão</option>
-                                        </select>
-                                    </div>
-                                    <button type='button' class='btn btn-primary' onclick='addExpense(${index})'>Adicionar</button>
-                                </form>
-                                <ul class='list-group mt-3' id='expenses-list-${index}'></ul>
-                                <p class='mt-3'><strong>Total de Gastos:</strong> <span id='total-expenses-${index}'>R$ 0,00</span></p>
+                                    <h3>Vendas</h3>
+                                    <form id='sales-form-${index}'>
+                                        <div class='mb-3'>
+                                            <label for='sales-product-${index}' class='form-label'>Produto</label>
+                                            <input type='text' id='sales-product-${index}' class='form-control' required>
+                                        </div>
+                                        <div class='mb-3'>
+                                            <label for='sales-unit-value-${index}' class='form-label'>Valor Unitário</label>
+                                            <input type='number' id='sales-unit-value-${index}' class='form-control' required>
+                                        </div>
+                                        <div class='mb-3'>
+                                            <label for='sales-quantity-${index}' class='form-label'>Quantidade</label>
+                                            <input type='number' id='sales-quantity-${index}' class='form-control' required>
+                                        </div>
+                                        <div class='mb-3'>
+                                            <label for='sales-payment-method-${index}' class='form-label'>Método de Pagamento</label>
+                                            <select id='sales-payment-method-${index}' class='form-select'>
+                                                <option value='pix'>Pix</option>
+                                                <option value='dinheiro'>Dinheiro</option>
+                                                <option value='cartao'>Cartão</option>
+                                            </select>
+                                        </div>
+                                        <button type='button' class='btn btn-success' onclick='addSale(${index})'>Adicionar</button>
+                                    </form>
+                                    <ul class='list-group mt-3' id='sales-list-${index}'></ul>
+                                    <p class='mt-3'><strong>Total de Vendas:</strong> <span id='total-sales-${index}'>R$ 0,00</span></p>
+                                </div>
+
+                                <!-- Despesas -->
+                                <div class="col-md-3">
+                                    <h3>Despesas</h3>
+                                    <form id="debts-form-${index}">
+                                        <div class="mb-3">
+                                            <label for="debt-name-${index}" class="form-label">Nome da Despesa</label>
+                                            <input type="text" id="debt-name-${index}" class="form-control" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="debt-value-${index}" class="form-label">Valor</label>
+                                            <input type="number" id="debt-value-${index}" class="form-control" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="debt-due-date-${index}" class="form-label">Data de Vencimento</label>
+                                            <input type="date" id="debt-due-date-${index}" class="form-control" required>
+                                        </div>
+                                        <button type="button" class="btn btn-danger" onclick="addDebt(${index})">Adicionar</button>
+                                    </form>
+                                    <ul class="list-group mt-3" id="debts-list-${index}"></ul>
+                                    <p class="mt-3"><strong>Total de Despesas:</strong> <span id="total-debts-${index}">R$ 0,00</span></p>
+                                </div>
+
+                                <!-- Relatório -->
+                                <div class='col-md-3'>
+                                    <h3>Relatório</h3>
+                                    <p><strong>Total de Gastos:</strong> <span id='report-expenses-${index}'>R$ 0,00</span></p>
+                                    <ul>
+                                        <li>Pix: <span id='report-expenses-pix-${index}'>R$ 0,00</span></li>
+                                        <li>Dinheiro: <span id='report-expenses-dinheiro-${index}'>R$ 0,00</span></li>
+                                        <li>Cartão: <span id='report-expenses-cartao-${index}'>R$ 0,00</span></li>
+                                    </ul>
+                                    <p><strong>Total de Vendas:</strong> <span id='report-sales-${index}'>R$ 0,00</span></p>
+                                    <ul>
+                                        <li>Pix: <span id='report-sales-pix-${index}'>R$ 0,00</span></li>
+                                        <li>Dinheiro: <span id='report-sales-dinheiro-${index}'>R$ 0,00</span></li>
+                                        <li>Cartão: <span id='report-sales-cartao-${index}'>R$ 0,00</span></li>
+                                    </ul>
+                                    <p><strong>Lucro:</strong> <span id='profit-${index}'>R$ 0,00</span></p>
+                                    <!-- Botão para exportar para PDF -->
+                                    <button class='btn btn-info mt-3' onclick='exportToPDF(${index})'>Exportar para PDF</button>
+                                </div>
                             </div>
-
-                            <!-- Vendas -->
-                            <div class='col-md-3'>
-                                <h3>Vendas</h3>
-                                <form id='sales-form-${index}'>
-                                    <div class='mb-3'>
-                                        <label for='sales-product-${index}' class='form-label'>Produto</label>
-                                        <input type='text' id='sales-product-${index}' class='form-control' required>
-                                    </div>
-                                    <div class='mb-3'>
-                                        <label for='sales-unit-value-${index}' class='form-label'>Valor Unitário</label>
-                                        <input type='number' id='sales-unit-value-${index}' class='form-control' required>
-                                    </div>
-                                    <div class='mb-3'>
-                                        <label for='sales-quantity-${index}' class='form-label'>Quantidade</label>
-                                        <input type='number' id='sales-quantity-${index}' class='form-control' required>
-                                    </div>
-                                    <div class='mb-3'>
-                                        <label for='sales-payment-method-${index}' class='form-label'>Método de Pagamento</label>
-                                        <select id='sales-payment-method-${index}' class='form-select'>
-                                            <option value='pix'>Pix</option>
-                                            <option value='dinheiro'>Dinheiro</option>
-                                            <option value='cartao'>Cartão</option>
-                                        </select>
-                                    </div>
-                                    <button type='button' class='btn btn-success' onclick='addSale(${index})'>Adicionar</button>
-                                </form>
-                                <ul class='list-group mt-3' id='sales-list-${index}'></ul>
-                                <p class='mt-3'><strong>Total de Vendas:</strong> <span id='total-sales-${index}'>R$ 0,00</span></p>
-                            </div>
-
-                            <!-- Despesas -->
-                            <div class="col-md-3">
-                                <h3>Despesas</h3>
-                                <form id="debts-form-${index}">
-                                    <div class="mb-3">
-                                        <label for="debt-name-${index}" class="form-label">Nome da Despesa</label>
-                                        <input type="text" id="debt-name-${index}" class="form-control" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="debt-value-${index}" class="form-label">Valor</label>
-                                        <input type="number" id="debt-value-${index}" class="form-control" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="debt-due-date-${index}" class="form-label">Data de Vencimento</label>
-                                        <input type="date" id="debt-due-date-${index}" class="form-control" required>
-                                    </div>
-                                    <button type="button" class="btn btn-danger" onclick="addDebt(${index})">Adicionar</button>
-                                </form>
-                                <ul class="list-group mt-3" id="debts-list-${index}"></ul>
-                                <p class="mt-3"><strong>Total de Despesas:</strong> <span id="total-debts-${index}">R$ 0,00</span></p>
-                            </div>
-
-                            <!-- Relatório -->
-                            <div class='col-md-3'>
-                                <h3>Relatório</h3>
-                                <p><strong>Total de Gastos:</strong> <span id='report-expenses-${index}'>R$ 0,00</span></p>
-                                <ul>
-                                    <li>Pix: <span id='report-expenses-pix-${index}'>R$ 0,00</span></li>
-                                    <li>Dinheiro: <span id='report-expenses-dinheiro-${index}'>R$ 0,00</span></li>
-                                    <li>Cartão: <span id='report-expenses-cartao-${index}'>R$ 0,00</span></li>
-                                </ul>
-                                <p><strong>Total de Vendas:</strong> <span id='report-sales-${index}'>R$ 0,00</span></p>
-                                <ul>
-                                    <li>Pix: <span id='report-sales-pix-${index}'>R$ 0,00</span></li>
-                                    <li>Dinheiro: <span id='report-sales-dinheiro-${index}'>R$ 0,00</span></li>
-                                    <li>Cartão: <span id='report-sales-cartao-${index}'>R$ 0,00</span></li>
-                                </ul>
-                                <p><strong>Lucro:</strong> <span id='profit-${index}'>R$ 0,00</span></p>
-                                <!-- Botão para exportar para PDF -->
-                                <button class='btn btn-info mt-3' onclick='exportToPDF(${index})'>Exportar para PDF</button>
-                            </div>
-                        </div>
-                    </div>`);
-                });
-
-                const expenses = Array(12).fill([]).map(() => []);
-                const sales = Array(12).fill([]).map(() => []);
-                const debts = Array(12).fill([]).map(() => []);
-
-                function addExpense(index) {
-                    const product = document.getElementById(`expense-product-${index}`).value;
-                    const unitValue = parseFloat(document.getElementById(`expense-unit-value-${index}`).value);
-                    const quantity = parseInt(document.getElementById(`expense-quantity-${index}`).value);
-                    const paymentMethod = document.getElementById(`expense-payment-method-${index}`).value;
-                    const totalValue = unitValue * quantity;
-
-                    if (!product || isNaN(unitValue) || isNaN(quantity) || unitValue <= 0 || quantity <= 0) return;
-
-                    expenses[index].push({ product, unitValue, quantity, paymentMethod, totalValue });
-                    updateExpenses(index);
-
-                    // Reset fields
-                    document.getElementById(`expense-product-${index}`).value = '';
-                    document.getElementById(`expense-unit-value-${index}`).value = '';
-                    document.getElementById(`expense-quantity-${index}`).value = '';
-                }
-
-                function addSale(index) {
-                    const product = document.getElementById(`sales-product-${index}`).value;
-                    const unitValue = parseFloat(document.getElementById(`sales-unit-value-${index}`).value);
-                    const quantity = parseInt(document.getElementById(`sales-quantity-${index}`).value);
-                    const paymentMethod = document.getElementById(`sales-payment-method-${index}`).value;
-                    const totalValue = unitValue * quantity;
-
-                    if (!product || isNaN(unitValue) || isNaN(quantity) || unitValue <= 0 || quantity <= 0) return;
-
-                    sales[index].push({ product, unitValue, quantity, paymentMethod, totalValue });
-                    updateSales(index);
-
-                    // Reset fields
-                    document.getElementById(`sales-product-${index}`).value = '';
-                    document.getElementById(`sales-unit-value-${index}`).value = '';
-                    document.getElementById(`sales-quantity-${index}`).value = '';
-                }
-
-                function addDebt(index) {
-                    const name = document.getElementById(`debt-name-${index}`).value; // Captura o nome da despesa
-                    const value = parseFloat(document.getElementById(`debt-value-${index}`).value);
-                    const dueDate = document.getElementById(`debt-due-date-${index}`).value;
-
-                    if (!name || isNaN(value) || !dueDate) return;
-
-                    debts[index].push({ name, value, dueDate });
-                    updateDebts(index);
-
-                    // Reset fields
-                    document.getElementById(`debt-name-${index}`).value = '';
-                    document.getElementById(`debt-value-${index}`).value = '';
-                    document.getElementById(`debt-due-date-${index}`).value = '';
-                }
-
-                function updateExpenses(index) {
-                    const list = document.getElementById(`expenses-list-${index}`);
-                    list.innerHTML = '';
-
-                    let total = 0;
-                    let pixTotal = 0;
-                    let dinheiroTotal = 0;
-                    let cartaoTotal = 0;
-
-                    expenses[index].forEach(expense => {
-                        total += expense.totalValue;
-
-                        if (expense.paymentMethod === 'pix') pixTotal += expense.totalValue;
-                        if (expense.paymentMethod === 'dinheiro') dinheiroTotal += expense.totalValue;
-                        if (expense.paymentMethod === 'cartao') cartaoTotal += expense.totalValue;
-
-                        const li = document.createElement('li');
-                        li.className = 'list-group-item d-flex justify-content-between align-items-center';
-                        li.innerHTML = `${expense.product} (${expense.unitValue.toFixed(2)} x ${expense.quantity}) = R$ ${expense.totalValue.toFixed(2)}
-                            <button class='btn btn-danger btn-sm' onclick='removeItem(${index}, "expense")'>X</button>`;
-                        list.appendChild(li);
+                        </div>`);
                     });
 
-                    document.getElementById(`total-expenses-${index}`).textContent = `R$ ${total.toFixed(2)}`;
-                    document.getElementById(`report-expenses-${index}`).textContent = `R$ ${total.toFixed(2)}`;
-                    document.getElementById(`report-expenses-pix-${index}`).textContent = `R$ ${pixTotal.toFixed(2)}`;
-                    document.getElementById(`report-expenses-dinheiro-${index}`).textContent = `R$ ${dinheiroTotal.toFixed(2)}`;
-                    document.getElementById(`report-expenses-cartao-${index}`).textContent = `R$ ${cartaoTotal.toFixed(2)}`;
-                    updateProfit(index);
-                }
+                    const expenses = Array(12).fill([]).map(() => []);
+                    const sales = Array(12).fill([]).map(() => []);
+                    const debts = Array(12).fill([]).map(() => []);
 
-                function updateSales(index) {
-                    const list = document.getElementById(`sales-list-${index}`);
-                    list.innerHTML = '';
+                    function addExpense(index) {
+                        const product = document.getElementById(`expense-product-${index}`).value;
+                        const unitValue = parseFloat(document.getElementById(`expense-unit-value-${index}`).value);
+                        const quantity = parseInt(document.getElementById(`expense-quantity-${index}`).value);
+                        const paymentMethod = document.getElementById(`expense-payment-method-${index}`).value;
+                        const totalValue = unitValue * quantity;
 
-                    let total = 0;
-                    let pixTotal = 0;
-                    let dinheiroTotal = 0;
-                    let cartaoTotal = 0;
+                        if (!product || isNaN(unitValue) || isNaN(quantity) || unitValue <= 0 || quantity <= 0) return;
 
-                    sales[index].forEach(sale => {
-                        total += sale.totalValue;
+                        expenses[index].push({ product, unitValue, quantity, paymentMethod, totalValue });
+                        updateExpenses(index);
 
-                        if (sale.paymentMethod === 'pix') pixTotal += sale.totalValue;
-                        if (sale.paymentMethod === 'dinheiro') dinheiroTotal += sale.totalValue;
-                        if (sale.paymentMethod === 'cartao') cartaoTotal += sale.totalValue;
+                        // Reset fields
+                        document.getElementById(`expense-product-${index}`).value = '';
+                        document.getElementById(`expense-unit-value-${index}`).value = '';
+                        document.getElementById(`expense-quantity-${index}`).value = '';
+                    }
 
-                        const li = document.createElement('li');
-                        li.className = 'list-group-item d-flex justify-content-between align-items-center';
-                        li.innerHTML = `${sale.product} (${sale.unitValue.toFixed(2)} x ${sale.quantity}) = R$ ${sale.totalValue.toFixed(2)}
-                            <button class='btn btn-danger btn-sm' onclick='removeItem(${index}, "sale")'>X</button>`;
-                        list.appendChild(li);
-                    });
+                    function addSale(index) {
+                        const product = document.getElementById(`sales-product-${index}`).value;
+                        const unitValue = parseFloat(document.getElementById(`sales-unit-value-${index}`).value);
+                        const quantity = parseInt(document.getElementById(`sales-quantity-${index}`).value);
+                        const paymentMethod = document.getElementById(`sales-payment-method-${index}`).value;
+                        const totalValue = unitValue * quantity;
 
-                    document.getElementById(`total-sales-${index}`).textContent = `R$ ${total.toFixed(2)}`;
-                    document.getElementById(`report-sales-${index}`).textContent = `R$ ${total.toFixed(2)}`;
-                    document.getElementById(`report-sales-pix-${index}`).textContent = `R$ ${pixTotal.toFixed(2)}`;
-                    document.getElementById(`report-sales-dinheiro-${index}`).textContent = `R$ ${dinheiroTotal.toFixed(2)}`;
-                    document.getElementById(`report-sales-cartao-${index}`).textContent = `R$ ${cartaoTotal.toFixed(2)}`;
-                    updateProfit(index);
-                }
+                        if (!product || isNaN(unitValue) || isNaN(quantity) || unitValue <= 0 || quantity <= 0) return;
 
-                function updateDebts(index) {
-                    const list = document.getElementById(`debts-list-${index}`);
-                    list.innerHTML = '';
+                        sales[index].push({ product, unitValue, quantity, paymentMethod, totalValue });
+                        updateSales(index);
 
-                    let total = 0;
+                        // Reset fields
+                        document.getElementById(`sales-product-${index}`).value = '';
+                        document.getElementById(`sales-unit-value-${index}`).value = '';
+                        document.getElementById(`sales-quantity-${index}`).value = '';
+                    }
 
-                    debts[index].forEach(debt => {
-                        total += debt.value;
+                    function addDebt(index) {
+                        const name = document.getElementById(`debt-name-${index}`).value; // Captura o nome da despesa
+                        const value = parseFloat(document.getElementById(`debt-value-${index}`).value);
+                        const dueDate = document.getElementById(`debt-due-date-${index}`).value;
 
-                        const li = document.createElement('li');
-                        li.className = 'list-group-item d-flex justify-content-between align-items-center';
-                        li.innerHTML = `${debt.name} - R$ ${debt.value.toFixed(2)} (Vencimento: ${debt.dueDate})
-                            <button class='btn btn-danger btn-sm' onclick='removeItem(${index}, "debt")'>X</button>`;
-                        list.appendChild(li);
-                    });
+                        if (!name || isNaN(value) || !dueDate) return;
 
-                    document.getElementById(`total-debts-${index}`).textContent = `R$ ${total.toFixed(2)}`;
-                    updateProfit(index);
-                }
+                        debts[index].push({ name, value, dueDate });
+                        updateDebts(index);
 
-                function updateProfit(index) {
-                    const totalSales = sales[index].reduce((sum, sale) => sum + sale.totalValue, 0);
-                    const totalExpenses = expenses[index].reduce((sum, expense) => sum + expense.totalValue, 0);
-                    const totalDebts = debts[index].reduce((sum, debt) => sum + debt.value, 0);
-                    const profit = totalSales - totalExpenses - totalDebts;
-                    document.getElementById(`profit-${index}`).textContent = `R$ ${profit.toFixed(2)}`;
-                }
+                        // Reset fields
+                        document.getElementById(`debt-name-${index}`).value = '';
+                        document.getElementById(`debt-value-${index}`).value = '';
+                        document.getElementById(`debt-due-date-${index}`).value = '';
+                    }
 
-                function exportToPDF(index) {
+                    function updateExpenses(index) {
+                        const list = document.getElementById(`expenses-list-${index}`);
+                        list.innerHTML = '';
+
+                        let total = 0;
+                        let pixTotal = 0;
+                        let dinheiroTotal = 0;
+                        let cartaoTotal = 0;
+
+                        expenses[index].forEach(expense => {
+                            total += expense.totalValue;
+
+                            if (expense.paymentMethod === 'pix') pixTotal += expense.totalValue;
+                            if (expense.paymentMethod === 'dinheiro') dinheiroTotal += expense.totalValue;
+                            if (expense.paymentMethod === 'cartao') cartaoTotal += expense.totalValue;
+
+                            const li = document.createElement('li');
+                            li.className = 'list-group-item d-flex justify-content-between align-items-center';
+                            li.innerHTML = `${expense.product} (${expense.unitValue.toFixed(2)} x ${expense.quantity}) = R$ ${expense.totalValue.toFixed(2)}
+                                <button class='btn btn-danger btn-sm' onclick='removeItem(${index}, "expense")'>X</button>`;
+                            list.appendChild(li);
+                        });
+
+                        document.getElementById(`total-expenses-${index}`).textContent = `R$ ${total.toFixed(2)}`;
+                        document.getElementById(`report-expenses-${index}`).textContent = `R$ ${total.toFixed(2)}`;
+                        document.getElementById(`report-expenses-pix-${index}`).textContent = `R$ ${pixTotal.toFixed(2)}`;
+                        document.getElementById(`report-expenses-dinheiro-${index}`).textContent = `R$ ${dinheiroTotal.toFixed(2)}`;
+                        document.getElementById(`report-expenses-cartao-${index}`).textContent = `R$ ${cartaoTotal.toFixed(2)}`;
+                        updateProfit(index);
+                    }
+
+                    function updateSales(index) {
+                        const list = document.getElementById(`sales-list-${index}`);
+                        list.innerHTML = '';
+
+                        let total = 0;
+                        let pixTotal = 0;
+                        let dinheiroTotal = 0;
+                        let cartaoTotal = 0;
+
+                        sales[index].forEach(sale => {
+                            total += sale.totalValue;
+
+                            if (sale.paymentMethod === 'pix') pixTotal += sale.totalValue;
+                            if (sale.paymentMethod === 'dinheiro') dinheiroTotal += sale.totalValue;
+                            if (sale.paymentMethod === 'cartao') cartaoTotal += sale.totalValue;
+
+                            const li = document.createElement('li');
+                            li.className = 'list-group-item d-flex justify-content-between align-items-center';
+                            li.innerHTML = `${sale.product} (${sale.unitValue.toFixed(2)} x ${sale.quantity}) = R$ ${sale.totalValue.toFixed(2)}
+                                <button class='btn btn-danger btn-sm' onclick='removeItem(${index}, "sale")'>X</button>`;
+                            list.appendChild(li);
+                        });
+
+                        document.getElementById(`total-sales-${index}`).textContent = `R$ ${total.toFixed(2)}`;
+                        document.getElementById(`report-sales-${index}`).textContent = `R$ ${total.toFixed(2)}`;
+                        document.getElementById(`report-sales-pix-${index}`).textContent = `R$ ${pixTotal.toFixed(2)}`;
+                        document.getElementById(`report-sales-dinheiro-${index}`).textContent = `R$ ${dinheiroTotal.toFixed(2)}`;
+                        document.getElementById(`report-sales-cartao-${index}`).textContent = `R$ ${cartaoTotal.toFixed(2)}`;
+                        updateProfit(index);
+                    }
+
+                    function updateDebts(index) {
+                        const list = document.getElementById(`debts-list-${index}`);
+                        list.innerHTML = '';
+
+                        let total = 0;
+
+                        debts[index].forEach(debt => {
+                            total += debt.value;
+
+                            const li = document.createElement('li');
+                            li.className = 'list-group-item d-flex justify-content-between align-items-center';
+                            li.innerHTML = `${debt.name} - R$ ${debt.value.toFixed(2)} (Vencimento: ${debt.dueDate})
+                                <button class='btn btn-danger btn-sm' onclick='removeItem(${index}, "debt")'>X</button>`;
+                            list.appendChild(li);
+                        });
+
+                        document.getElementById(`total-debts-${index}`).textContent = `R$ ${total.toFixed(2)}`;
+                        updateProfit(index);
+                    }
+
+                    function updateProfit(index) {
+                        const totalSales = sales[index].reduce((sum, sale) => sum + sale.totalValue, 0);
+                        const totalExpenses = expenses[index].reduce((sum, expense) => sum + expense.totalValue, 0);
+                        const totalDebts = debts[index].reduce((sum, debt) => sum + debt.value, 0);
+                        const profit = totalSales - totalExpenses - totalDebts;
+                        document.getElementById(`profit-${index}`).textContent = `R$ ${profit.toFixed(2)}`;
+                    }
+
+                    function exportToPDF(index) {
+                        const { jsPDF } = window.jspdf;
+                        const doc = new jsPDF();
+
+                        // Definir o título
+                        doc.text(`Relatório de ${months[index]}`, 10, 10);
+
+                        // Total de Gastos e valores por método de pagamento
+                        const totalExpenses = document.getElementById(`report-expenses-${index}`).textContent;
+                        const totalExpensesPix = document.getElementById(`report-expenses-pix-${index}`).textContent;
+                        const totalExpensesDinheiro = document.getElementById(`report-expenses-dinheiro-${index}`).textContent;
+                        const totalExpensesCartao = document.getElementById(`report-expenses-cartao-${index}`).textContent;
+                        
+                        doc.text(`Total de Gastos: ${totalExpenses}`, 10, 20);
+                        doc.text(`Pix: ${totalExpensesPix}`, 10, 30);
+                        doc.text(`Dinheiro: ${totalExpensesDinheiro}`, 10, 40);
+                        doc.text(`Cartão: ${totalExpensesCartao}`, 10, 50);
+
+                        // Total de Vendas e valores por método de pagamento
+                        const totalSales = document.getElementById(`report-sales-${index}`).textContent;
+                        const totalSalesPix = document.getElementById(`report-sales-pix-${index}`).textContent;
+                        const totalSalesDinheiro = document.getElementById(`report-sales-dinheiro-${index}`).textContent;
+                        const totalSalesCartao = document.getElementById(`report-sales-cartao-${index}`).textContent;
+                        
+                        doc.text(`Total de Vendas: ${totalSales}`, 10, 60);
+                        doc.text(`Pix: ${totalSalesPix}`, 10, 70);
+                        doc.text(`Dinheiro: ${totalSalesDinheiro}`, 10, 80);
+                        doc.text(`Cartão: ${totalSalesCartao}`, 10, 90);
+
+                        // Cálculo do Lucro
+                        const profit = document.getElementById(`profit-${index}`).textContent;
+                        doc.text(`Lucro: ${profit}`, 10, 100);
+
+                        // Salvar o arquivo PDF com o nome do mês
+                        doc.save(`${months[index]}_relatorio.pdf`);
+    }
                     const { jsPDF } = window.jspdf;
                     const doc = new jsPDF();
-
-                    // Definir o título
                     doc.text(`Relatório de ${months[index]}`, 10, 10);
-
-                    // Total de Gastos e valores por método de pagamento
-                    const totalExpenses = document.getElementById(`report-expenses-${index}`).textContent;
-                    const totalExpensesPix = document.getElementById(`report-expenses-pix-${index}`).textContent;
-                    const totalExpensesDinheiro = document.getElementById(`report-expenses-dinheiro-${index}`).textContent;
-                    const totalExpensesCartao = document.getElementById(`report-expenses-cartao-${index}`).textContent;
-                    
-                    doc.text(`Total de Gastos: ${totalExpenses}`, 10, 20);
-                    doc.text(`Pix: ${totalExpensesPix}`, 10, 30);
-                    doc.text(`Dinheiro: ${totalExpensesDinheiro}`, 10, 40);
-                    doc.text(`Cartão: ${totalExpensesCartao}`, 10, 50);
-
-                    // Total de Vendas e valores por método de pagamento
-                    const totalSales = document.getElementById(`report-sales-${index}`).textContent;
-                    const totalSalesPix = document.getElementById(`report-sales-pix-${index}`).textContent;
-                    const totalSalesDinheiro = document.getElementById(`report-sales-dinheiro-${index}`).textContent;
-                    const totalSalesCartao = document.getElementById(`report-sales-cartao-${index}`).textContent;
-                    
-                    doc.text(`Total de Vendas: ${totalSales}`, 10, 60);
-                    doc.text(`Pix: ${totalSalesPix}`, 10, 70);
-                    doc.text(`Dinheiro: ${totalSalesDinheiro}`, 10, 80);
-                    doc.text(`Cartão: ${totalSalesCartao}`, 10, 90);
-
-                    // Cálculo do Lucro
-                    const profit = document.getElementById(`profit-${index}`).textContent;
-                    doc.text(`Lucro: ${profit}`, 10, 100);
-
-                    // Salvar o arquivo PDF com o nome do mês
+                    doc.text(`Total de Gastos: R$ ${document.getElementById(`report-expenses-${index}`).textContent}`, 10, 20);
+                    doc.text(`Total de Vendas: R$ ${document.getElementById(`report-sales-${index}`).textContent}`, 10, 30);
+                    doc.text(`Lucro: R$ ${document.getElementById(`profit-${index}`).textContent}`, 10, 40);
                     doc.save(`${months[index]}_relatorio.pdf`);
-}
-                const { jsPDF } = window.jspdf;
-                const doc = new jsPDF();
-                doc.text(`Relatório de ${months[index]}`, 10, 10);
-                doc.text(`Total de Gastos: R$ ${document.getElementById(`report-expenses-${index}`).textContent}`, 10, 20);
-                doc.text(`Total de Vendas: R$ ${document.getElementById(`report-sales-${index}`).textContent}`, 10, 30);
-                doc.text(`Lucro: R$ ${document.getElementById(`profit-${index}`).textContent}`, 10, 40);
-                doc.save(`${months[index]}_relatorio.pdf`);
-                
-            </script>
+                    
+                </script>
         </div>
     </div>
 </body>

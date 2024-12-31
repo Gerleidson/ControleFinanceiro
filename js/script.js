@@ -262,17 +262,17 @@ function updateMetasList() {
 function deleteItem(type, item) {
     if (type === 'gastos') {
         gastosData = gastosData.filter(gasto => gasto !== item);
+        updateGastosList();  // Atualiza apenas a lista de gastos
     } else if (type === 'vendas') {
         vendasData = vendasData.filter(venda => venda !== item);
+        updateVendasList();  // Atualiza apenas a lista de vendas
     } else if (type === 'despesas') {
         despesasData = despesasData.filter(despesa => despesa !== item);
+        updateDespesasList();  // Atualiza apenas a lista de despesas
     } else if (type === 'metas') {
         metasData = metasData.filter(meta => meta !== item);
+        updateMetasList();  // Atualiza apenas a lista de metas
     }
-    updateGastosList();
-    updateVendasList();
-    updateDespesasList();
-    updateMetasList();
 }
 
 // Função para atualizar o relatório
@@ -311,31 +311,49 @@ function generatePdf() {
     // Chama a função de atualizar o relatório antes de gerar o PDF
     updateRelatorio();
 
-    // Obter o mês atual (0 a 11, janeiro é 0)
+    // Obter o mês atual (0 a 11, Janeiro é 0)
     const currentMonth = new Date().toLocaleString('default', { month: 'long' });
 
-    // Adiciona os dados no PDF
-    doc.text(`Relatório Geral`, 10, 10);
-    
+    // Define a fonte como negrito para o "Relatório do mês"
+    doc.setFont("helvetica", "bold");
+    doc.text(`RELATORIO DO MÊS DE ${currentMonth.toUpperCase()}`, 10, 10);  // Caixa alta e negrito
+
+    let yPosition = 20; // Posição vertical inicial para o texto
+
+    // Define a fonte como negrito para as seções "Gastos", "Vendas", "Lucro"
+    doc.setFont("helvetica", "bold");
+
     // Adicionando valores de gastos
-    doc.text(`Total de Gastos: R$ ${document.getElementById('total-gastos').innerText}`, 10, 20);
-    doc.text(`Pix: R$ ${document.getElementById('gastos-pix').innerText}`, 10, 30);
-    doc.text(`Dinheiro: R$ ${document.getElementById('gastos-dinheiro').innerText}`, 10, 40);
-    doc.text(`Cartão: R$ ${document.getElementById('gastos-cartao').innerText}`, 10, 50);
+    doc.text(`Gastos`, 10, yPosition); 
+    yPosition += 10;
+    doc.setFont("helvetica", "normal");  // Volta para fonte normal para os detalhes
+    doc.text(`Pix: R$ ${document.getElementById('gastos-pix').innerText}`, 10, yPosition);
+    yPosition += 10;
+    doc.text(`Dinheiro: R$ ${document.getElementById('gastos-dinheiro').innerText}`, 10, yPosition);
+    yPosition += 10;
+    doc.text(`Cartão: R$ ${document.getElementById('gastos-cartao').innerText}`, 10, yPosition);
+    yPosition += 10;
+    doc.text(`Total de Gastos: R$ ${document.getElementById('total-gastos').innerText}`, 10, yPosition);
+    yPosition += 15; // Espaçamento maior após a seção de Gastos
 
     // Adicionando valores de vendas
-    doc.text(`Total de Vendas: R$ ${document.getElementById('total-vendas').innerText}`, 10, 60);
-    doc.text(`Pix: R$ ${document.getElementById('vendas-pix').innerText}`, 10, 70);
-    doc.text(`Dinheiro: R$ ${document.getElementById('vendas-dinheiro').innerText}`, 10, 80);
-    doc.text(`Cartão: R$ ${document.getElementById('vendas-cartao').innerText}`, 10, 90);
+    doc.setFont("helvetica", "bold");  // Volta para negrito para a seção "Vendas"
+    doc.text(`Vendas`, 10, yPosition);  
+    yPosition += 10;
+    doc.setFont("helvetica", "normal");  // Volta para fonte normal para os detalhes
+    doc.text(`Pix: R$ ${document.getElementById('vendas-pix').innerText}`, 10, yPosition);
+    yPosition += 10;
+    doc.text(`Dinheiro: R$ ${document.getElementById('vendas-dinheiro').innerText}`, 10, yPosition);
+    yPosition += 10;
+    doc.text(`Cartão: R$ ${document.getElementById('vendas-cartao').innerText}`, 10, yPosition);
+    yPosition += 10;
+    doc.text(`Total de Vendas: R$ ${document.getElementById('total-vendas').innerText}`, 10, yPosition);
+    yPosition += 15; // Espaçamento maior após a seção de Vendas
 
     // Adicionando lucro
-    doc.text(`Lucro: R$ ${document.getElementById('lucro').innerText}`, 10, 100);
+    doc.setFont("helvetica", "bold");  // Negrito para "Lucro"
+    doc.text(`Lucro: R$ ${document.getElementById('lucro').innerText}`, 10, yPosition);
 
     // Salvar o PDF com o nome do mês atual
-    doc.save(`Relatorio_${currentMonth}.pdf`);
-}
-
-function toggleSidebar() {
-    document.querySelector('.sidebar').classList.toggle('active');
+    doc.save(`Relatorio ${currentMonth}.pdf`);
 }
