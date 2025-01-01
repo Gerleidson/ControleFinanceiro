@@ -65,18 +65,14 @@
                 <div class="tab-content">
                     <!-- Abas de Meses -->
                     <ul class="nav nav-tabs" id="monthTabs" role="tablist">
+                        <!-- Gerar abas dos meses -->
                         <script>
-                            const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-                            const monthTabs = document.getElementById('monthTabs');
-                            months.forEach((month, index) => {
-                                const li = document.createElement('li');
-                                li.className = 'nav-item';
-                                li.setAttribute('role', 'presentation');
-                                li.innerHTML = `
-                                    <button class="nav-link ${index === 0 ? 'active' : ''}" id="tab-${index}" data-bs-toggle="tab" data-bs-target="#content-${index}" type="button" role="tab">${month}</button>
-                                `;
-                                monthTabs.appendChild(li);
-                            });
+                          const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+                          months.forEach((month, index) => {
+                            document.write(`<li class='nav-item' role='presentation'>
+                                <button class='nav-link ${index === 0 ? 'active' : ''}' id='tab-${index}' data-bs-toggle='tab' data-bs-target='#content-${index}' type='button' role='tab'>${month}</button>
+                              </li>`);
+                          });
                         </script>
                     </ul>
         
