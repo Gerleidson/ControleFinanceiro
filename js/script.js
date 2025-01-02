@@ -1,4 +1,4 @@
-// despesas,vendas, gastos e metas
+// Arrays para armazenar os dados
 const expenses = Array(12).fill([]).map(() => []);
 const sales = Array(12).fill([]).map(() => []);
 const debts = Array(12).fill([]).map(() => []);
@@ -46,7 +46,7 @@ function addDebt(index) {
     const value = parseFloat(document.getElementById(`debt-value-${index}`).value);
     const dueDate = document.getElementById(`debt-due-date-${index}`).value;
 
-    if (!name || isNaN(value) || value <= 0) return;
+    if (!name || isNaN(value) || value <= 0 || !dueDate) return;
 
     debts[index].push({ name, value, dueDate });
     updateDebts(index);
@@ -67,26 +67,28 @@ function addGoal(index) {
 }
 
 
-// Funções para excluir itens
+    // Funções para excluir itens
 function deleteItem(index, expenseIndex) {
-    expenses[index].splice(expenseIndex, 1); // Remove o item da lista
-    updateExpenses(index); // Atualiza a interface
+expenses[index].splice(expenseIndex, 1); // Remove o item da lista
+updateExpenses(index); // Atualiza a interface
 }
 
 function deleteSale(index, saleIndex) {
-    sales[index].splice(saleIndex, 1); // Remove o item da lista de vendas
-    updateSales(index); // Atualiza a interface
+sales[index].splice(saleIndex, 1); // Remove o item da lista de vendas
+updateSales(index); // Atualiza a interface
 }
 
 function deleteDebt(index, debtIndex) {
-    debts[index].splice(debtIndex, 1); // Remove a dívida da lista
-    updateDebts(index); // Atualiza a interface
+debts[index].splice(debtIndex, 1); // Remove a dívida da lista
+updateDebts(index); // Atualiza a interface
 }
 
 function deleteGoal(index, goalIndex) {
-    goals[index].splice(goalIndex, 1); // Remove a meta da lista
-    updateGoals(index); // Atualiza a interface
+goals[index].splice(goalIndex, 1); // Remove a meta da lista
+updateGoals(index); // Atualiza a interface
 }
+
+
 
 // Funções de atualização para cada seção
 function updateExpenses(index) {
@@ -119,6 +121,7 @@ function updateExpenses(index) {
     updateReport(index);  // Atualiza o relatório
 
 }
+
 function updateSales(index) {
     const salesList = document.getElementById(`sales-list-${index}`);
     salesList.innerHTML = '';
@@ -185,15 +188,13 @@ function updateGoals(index) {
 
 // Função para atualizar os totais do relatório
 function updateReport(index) {
-    // Soma os totais de despesas e vendas
     const totalExpenses = expenses[index].reduce((total, expense) => total + expense.totalValue, 0);
     const totalSales = sales[index].reduce((total, sale) => total + sale.totalValue, 0);
     const totalProfit = totalSales - totalExpenses;
 
-    // Atualiza os elementos HTML do relatório
-    document.getElementById(`report-total-expenses-${index}`).innerText = `R$ ${totalExpenses.toFixed(2)}`;
-    document.getElementById(`report-total-sales-${index}`).innerText = `R$ ${totalSales.toFixed(2)}`;
-    document.getElementById(`report-total-profit-${index}`).innerText = `R$ ${totalProfit.toFixed(2)}`;
+    document.getElementById(`total-expenses-${index}`).innerText = `R$ ${totalExpenses.toFixed(2)}`;
+    document.getElementById(`total-sales-${index}`).innerText = `R$ ${totalSales.toFixed(2)}`;
+    document.getElementById(`total-profit-${index}`).innerText = `R$ ${totalProfit.toFixed(2)}`;
 }
 
 // Função para gerar o PDF
@@ -221,3 +222,27 @@ function downloadReport(index) {
 
     doc.save(`relatorio-${months[index]}.pdf`);
 }
+
+// Função para adicionar gastos
+function addExpense(index) {
+    const product = document.getElementById(`expense-product-${index}`).value;
+    const unitValue = parseFloat(document.getElementById(`expense-unit-value-${index}`).value);
+    const quantity = parseInt(document.getElementById(`expense-quantity-${index}`).value);
+    const paymentMethod = document.getElementById(`expense-payment-method-${index}`).value;
+    const totalValue = unitValue * quantity;
+
+    if (!product || isNaN(unitValue) || isNaN(quantity) || unitValue <= 0 || quantity <= 0) return;
+
+    expenses[index].push({ product, unitValue, quantity, paymentMethod, totalValue });
+    updateExpenses(index);
+    updateReport(index);  // Atualiza o relatório
+    document.getElementById(`expense-product-${index}`).value = '';
+    document.getElementById(`expense-unit-value-${index}`).value = '';
+    document.getElementById(`expense-quantity-${index}`).value = '';
+}
+
+
+// erro acontece quando voce quer atualizar o total de gastos no relatorio.. 
+//<p><strong>Total de Gastos:</strong> <span id="report-total-expenses-0">R$ 0.00</span></p> esse recebe o valor mais desconfigura os meses
+//<p><strong>Total de Gastos outro:</strong> <span id="total-expenses-${index}">R$ 0,00</span></p> este nao recebe valor e mantem os meses 
+                            
