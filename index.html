@@ -13,10 +13,10 @@
         <title>Controle Financeiro - Relatório de Gastos e Lucros</title>
         
         <link rel="canonical" href="URL_da_sua_página">
-       
+    
         <!-- Link para o arquivo CSS externo -->
         <link rel="stylesheet" href="css/style.css">
-       
+    
         <!-- Link para o favicon -->
         <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     
@@ -31,410 +31,192 @@
             <img src="img/logo.png" alt="Logo" class="logo">
             <h1>Controle Financeiro</h1>
         </div>        
+
         <!-- Menu de Navegação -->
-            <ul class="nav nav-tabs" id="monthTabs" role="tablist">
-                <script>
-                    const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-                    months.forEach((month, index) => {
-                        document.write(`<li class='nav-item' role='presentation'>
-                            <button class='nav-link ${index === 0 ? 'active' : ''}' id='tab-${index}' data-bs-toggle='tab' data-bs-target='#content-${index}' type='button' role='tab'>${month}</button>
-                        </li>`);
-                    });
-                </script>
-            </ul>
+        <ul class="nav nav-tabs" id="monthTabs" role="tablist">
+            <script>
+                const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+                months.forEach((month, index) => {
+                    document.write(`<li class='nav-item' role='presentation'>
+                        <button class='nav-link ${index === 0 ? 'active' : ''}' id='tab-${index}' data-bs-toggle='tab' data-bs-target='#content-${index}' type='button' role='tab'>${month}</button>
+                    </li>`);
+                });
+            </script>
+        </ul>
 
-            <div class="tab-content mt-3" id="monthTabsContent">
-                <script>
-                    months.forEach((month, index) => {
-                        document.write(`<div class='tab-pane fade ${index === 0 ? 'show active' : ''}' id='content-${index}' role='tabpanel'>
-                            <div class='row'>
-                                <div class="col-md-12">
-                                    <ul class="nav nav-pills">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" id="gastos-tab-${index}" data-bs-toggle="pill" href="#gastos-${index}">Gastos</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="vendas-tab-${index}" data-bs-toggle="pill" href="#vendas-${index}">Vendas</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="despesas-tab-${index}" data-bs-toggle="pill" href="#despesas-${index}">Despesas</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="metas-tab-${index}" data-bs-toggle="pill" href="#metas-${index}">Metas</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="relatorio-tab-${index}" data-bs-toggle="pill" href="#relatorio-${index}">Relatório</a>
-                                        </li>
-                                    </ul>
-                                </div>
+        <div class="tab-content mt-3" id="monthTabsContent">
+            <script>
+                months.forEach((month, index) => {
+                    document.write(`<div class='tab-pane fade ${index === 0 ? 'show active' : ''}' id='content-${index}' role='tabpanel'>
+                        <div class='row'>
+                            <div class="col-md-12">
+                                <ul class="nav nav-pills">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="gastos-tab-${index}" data-bs-toggle="pill" href="#gastos-${index}">Gastos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="vendas-tab-${index}" data-bs-toggle="pill" href="#vendas-${index}">Vendas</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="despesas-tab-${index}" data-bs-toggle="pill" href="#despesas-${index}">Despesas</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="metas-tab-${index}" data-bs-toggle="pill" href="#metas-${index}">Metas</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="relatorio-tab-${index}" data-bs-toggle="pill" href="#relatorio-${index}">Relatório</a>
+                                    </li>
+                                </ul>
+                            </div>
 
-                                <!-- Conteúdo das seções -->
-                                <div class="col-md-3">
-                                    <div class="tab-content mt-3">
-                                        <!-- Gastos -->
-                                        <div class="tab-pane fade show active" id="gastos-${index}">
-                                            <h3>Gastos</h3>
-                                            <form id="expenses-form-${index}">
-                                                <!-- Formulário de Gastos -->
-                                                <div class="mb-3">
-                                                    <label for="expense-product-${index}" class="form-label">Produto</label>
-                                                    <input type="text" id="expense-product-${index}" class="form-control" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="expense-unit-value-${index}" class="form-label">Valor Unitário</label>
-                                                    <input type="number" id="expense-unit-value-${index}" class="form-control" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="expense-quantity-${index}" class="form-label">Quantidade</label>
-                                                    <input type="number" id="expense-quantity-${index}" class="form-control" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="expense-payment-method-${index}" class="form-label">Método de Pagamento</label>
-                                                    <select id="expense-payment-method-${index}" class="form-select">
-                                                        <option value="pix">Pix</option>
-                                                        <option value="dinheiro">Dinheiro</option>
-                                                        <option value="cartao">Cartão</option>
-                                                    </select>
-                                                </div>
-                                                <button type="button" class="btn btn-primary" onclick="addExpense(${index})">Adicionar</button>
-                                            </form>
-                                            <p class="mt-3"><strong>Total de Gastos:</strong> <span id="total-expenses-${index}">R$ 0,00</span></p>
-                                            <ul class="list-group mt-3" id="expenses-list-${index}"></ul>
-                                        </div>
-
-                                        <!-- Vendas -->
-                                        <div class="tab-pane fade" id="vendas-${index}">
-                                            <h3>Vendas</h3>
-                                            <form id="sales-form-${index}">
-                                                <div class="mb-3">
-                                                    <label for="sales-product-${index}" class="form-label">Produto</label>
-                                                    <input type="text" id="sales-product-${index}" class="form-control" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="sales-unit-value-${index}" class="form-label">Valor Unitário</label>
-                                                    <input type="number" id="sales-unit-value-${index}" class="form-control" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="sales-quantity-${index}" class="form-label">Quantidade</label>
-                                                    <input type="number" id="sales-quantity-${index}" class="form-control" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="sales-payment-method-${index}" class="form-label">Método de Pagamento</label>
-                                                    <select id="sales-payment-method-${index}" class="form-select">
-                                                        <option value="pix">Pix</option>
-                                                        <option value="dinheiro">Dinheiro</option>
-                                                        <option value="cartao">Cartão</option>
-                                                    </select>
-                                                </div>
-                                                <button type="button" class="btn btn-success" onclick="addSale(${index})">Adicionar</button>
-                                            </form>
-                                            <p class="mt-3"><strong>Total de Vendas:</strong> <span id="total-sales-${index}">R$ 0,00</span></p>
-                                            <ul class="list-group mt-3" id="sales-list-${index}"></ul>
-                                        </div>
-
-                                        <!-- Despesas -->
-                                        <div class="tab-pane fade" id="despesas-${index}">
-                                            <h3>Despesas</h3>
-                                            <form id="debts-form-${index}">
-                                                <div class="mb-3">
-                                                    <label for="debt-name-${index}" class="form-label">Nome da Despesa</label>
-                                                    <input type="text" id="debt-name-${index}" class="form-control" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="debt-value-${index}" class="form-label">Valor</label>
-                                                    <input type="number" id="debt-value-${index}" class="form-control" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="debt-due-date-${index}" class="form-label">Data de Vencimento</label>
-                                                    <input type="date" id="debt-due-date-${index}" class="form-control" required>
-                                                </div>
-                                                <button type="button" class="btn btn-danger" onclick="addDebt(${index})">Adicionar</button>
-                                            </form>
-                                            <p class="mt-3"><strong>Total de Despesas:</strong> <span id="total-debts-${index}">R$ 0,00</span></p>
-                                            <ul class="list-group mt-3" id="debts-list-${index}"></ul>
-                                        </div>
-
-                                        <!-- Metas -->
-                                        <div class="tab-pane fade" id="metas-${index}">
-                                            <h3>Metas</h3>
-                                            <form id="goals-form-${index}">
-                                                <div class="mb-3">
-                                                    <label for="goal-description-${index}" class="form-label">Descrição da Meta</label>
-                                                    <input type="text" id="goal-description-${index}" class="form-control" required>
-                                                </div>
-                                                <button type="button" class="btn btn-warning" onclick="addGoal(${index})">Adicionar</button>
-                                            </form>
-                                            <ul class="list-group mt-3" id="goals-list-${index}"></ul>
-                                        </div>
-
-                                        <!-- Relatório -->
-                                        <div class="tab-pane fade" id="relatorio-${index}">
-                                            <h3>Relatório</h3>
-                                            <div class="card">
-                                                <div class="card-header">Relatório de Gastos</div>
-                                                <div class="card-body">
-                                                    <p><strong>Total de Gastos:</strong> <span id="report-total-expenses-0">R$ 0.00</span></p>
-                                                    
-                                                    <p><strong>Pix:</strong> <span id="expense-pix-${index}">R$ 0,00</span></p>
-                                                    <p><strong>Dinheiro:</strong> <span id="expense-dinheiro-${index}">R$ 0,00</span></p>
-                                                    <p><strong>Cartão:</strong> <span id="expense-cartao-${index}">R$ 0,00</span></p>
-
-                                                </div>
+                            <!-- Conteúdo das seções -->
+                            <div class="col-md-12">
+                                <div class="tab-content mt-3">
+                                    <!-- Gastos -->
+                                    <div class="tab-pane fade show active" id="gastos-${index}">
+                                        <h3>Gastos</h3>
+                                        <form id="expenses-form-${index}">
+                                            <!-- Formulário de Gastos -->
+                                            <div class="mb-3">
+                                                <label for="expense-product-${index}" class="form-label">Produto</label>
+                                                <input type="text" id="expense-product-${index}" class="form-control" required>
                                             </div>
-                                            <div class="card mt-3">
-                                                <div class="card-header">Relatório de Vendas</div>
-                                                <div class="card-body">
-                                                    <p><strong>Total de Vendas::</strong><span id="report-total-sales-0">R$ 0.00</span></p>
-                                                    <p><strong>Pix:</strong> <span id="sales-pix-${index}">R$ 0,00</span></p>
-                                                    <p><strong>Dinheiro:</strong> <span id="sales-dinheiro-${index}">R$ 0,00</span></p>
-                                                    <p><strong>Cartão:</strong> <span id="sales-cartao-${index}">R$ 0,00</span></p>
-                                                </div>
+                                            <div class="mb-3">
+                                                <label for="expense-unit-value-${index}" class="form-label">Valor Unitário</label>
+                                                <input type="number" id="expense-unit-value-${index}" class="form-control" required>
                                             </div>
-                                            <div class="card mt-3">
-                                                <div class="card-header">Lucro</div>
-                                                <div class="card-body">
-                                                    <p><strong>Lucro</strong>: <span id="report-total-profit-0">R$ 0.00</span></p>
+                                            <div class="mb-3">
+                                                <label for="expense-quantity-${index}" class="form-label">Quantidade</label>
+                                                <input type="number" id="expense-quantity-${index}" class="form-control" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="expense-payment-method-${index}" class="form-label">Método de Pagamento</label>
+                                                <select id="expense-payment-method-${index}" class="form-select">
+                                                    <option value="pix">Pix</option>
+                                                    <option value="dinheiro">Dinheiro</option>
+                                                    <option value="cartao">Cartão</option>
+                                                </select>
+                                            </div>
+                                            <button type="button" class="btn btn-primary" onclick="addExpense(${index})">Adicionar</button>
+                                        </form>
+                                        <p class="mt-3"><strong>Total de Gastos:</strong> <span id="total-expenses-${index}">R$ 0,00</span></p>
+                                        <ul class="list-group mt-3" id="expenses-list-${index}"></ul>
+                                    </div>
 
-                                                </div>
+                                    <!-- Vendas -->
+                                    <div class="tab-pane fade" id="vendas-${index}">
+                                        <h3>Vendas</h3>
+                                        <form id="sales-form-${index}">
+                                            <div class="mb-3">
+                                                <label for="sales-product-${index}" class="form-label">Produto</label>
+                                                <input type="text" id="sales-product-${index}" class="form-control" required>
                                             </div>
-                                                <!-- Botão para Baixar Relatório -->
-                                                <button class="btn btn-primary mt-3" onclick="downloadReport(${index})">Baixar Relatório em PDF</button>
+                                            <div class="mb-3">
+                                                <label for="sales-unit-value-${index}" class="form-label">Valor Unitário</label>
+                                                <input type="number" id="sales-unit-value-${index}" class="form-control" required>
                                             </div>
+                                            <div class="mb-3">
+                                                <label for="sales-quantity-${index}" class="form-label">Quantidade</label>
+                                                <input type="number" id="sales-quantity-${index}" class="form-control" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="sales-payment-method-${index}" class="form-label">Método de Pagamento</label>
+                                                <select id="sales-payment-method-${index}" class="form-select">
+                                                    <option value="pix">Pix</option>
+                                                    <option value="dinheiro">Dinheiro</option>
+                                                    <option value="cartao">Cartão</option>
+                                                </select>
+                                            </div>
+                                            <button type="button" class="btn btn-success" onclick="addSale(${index})">Adicionar</button>
+                                        </form>
+                                        <p class="mt-3"><strong>Total de Vendas:</strong> <span id="total-sales-${index}">R$ 0,00</span></p>
+                                        <ul class="list-group mt-3" id="sales-list-${index}"></ul>
+                                    </div>
+
+                                    <!-- Despesas -->
+                                    <div class="tab-pane fade" id="despesas-${index}">
+                                        <h3>Despesas</h3>
+                                        <form id="debts-form-${index}">
+                                            <div class="mb-3">
+                                                <label for="debt-name-${index}" class="form-label">Nome da Despesa</label>
+                                                <input type="text" id="debt-name-${index}" class="form-control" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="debt-value-${index}" class="form-label">Valor</label>
+                                                <input type="number" id="debt-value-${index}" class="form-control" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="debt-due-date-${index}" class="form-label">Data de Vencimento</label>
+                                                <input type="date" id="debt-due-date-${index}" class="form-control" required>
+                                            </div>
+                                            <button type="button" class="btn btn-danger" onclick="addDebt(${index})">Adicionar</button>
+                                        </form>
+                                        <p class="mt-3"><strong>Total de Despesas:</strong> <span id="total-debts-${index}">R$ 0,00</span></p>
+                                        <ul class="list-group mt-3" id="debts-list-${index}"></ul>
+                                    </div>
+
+                                    <!-- Metas -->
+                                    <div class="tab-pane fade" id="metas-${index}">
+                                        <h3>Metas</h3>
+                                        <form id="goals-form-${index}">
+                                            <div class="mb-3">
+                                                <label for="goal-description-${index}" class="form-label">Descrição da Meta</label>
+                                                <input type="text" id="goal-description-${index}" class="form-control" required>
+                                            </div>
+                                            <button type="button" class="btn btn-warning" onclick="addGoal(${index})">Adicionar</button>
+                                        </form>
+                                        <ul class="list-group mt-3" id="goals-list-${index}"></ul>
+                                    </div>
+
+                                    <!-- Relatório -->
+                                    <div class="tab-pane fade" id="relatorio-${index}">
+                                        <h3>Relatório</h3>
+                                        <div class="card">
+                                            <div class="card-header">Relatório de Gastos</div>
+                                            <div class="card-body">
+                                                <p><strong>Total de Gastos:</strong> <span id="report-total-expenses-0">R$ 0.00</span></p>
+                                                
+                                                <p><strong>Pix:</strong> <span id="expense-pix-${index}">R$ 0,00</span></p>
+                                                <p><strong>Dinheiro:</strong> <span id="expense-dinheiro-${index}">R$ 0,00</span></p>
+                                                <p><strong>Cartão:</strong> <span id="expense-cartao-${index}">R$ 0,00</span></p>
+
+                                            </div>
+                                        </div>
+                                        <div class="card mt-3">
+                                            <div class="card-header">Relatório de Vendas</div>
+                                            <div class="card-body">
+                                                <p><strong>Total de Vendas:</strong><span id="report-total-sales-0">R$ 0.00</span></p>
+                                                <p><strong>Pix:</strong> <span id="sales-pix-${index}">R$ 0,00</span></p>
+                                                <p><strong>Dinheiro:</strong> <span id="sales-dinheiro-${index}">R$ 0,00</span></p>
+                                                <p><strong>Cartão:</strong> <span id="sales-cartao-${index}">R$ 0,00</span></p>
+                                            </div>
+                                        </div>
+                                        <div class="card mt-3">
+                                            <div class="card-header">Lucro</div>
+                                            <div class="card-body">
+                                                <p><strong>Lucro</strong>: <span id="report-total-profit-0">R$ 0.00</span></p>
+
+                                            </div>
+                                        </div>
+                                            <!-- Botão para Baixar Relatório -->
+                                            <button class="btn btn-primary mt-3" onclick="downloadReport(${index})">Exportar para PDF</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>`);
-                    });
-                    
-                    // despesas,vendas, gastos e metas
-                    const expenses = Array(12).fill([]).map(() => []);
-                    const sales = Array(12).fill([]).map(() => []);
-                    const debts = Array(12).fill([]).map(() => []);
-                    const goals = Array(12).fill([]).map(() => []);
-
-                    // Função para adicionar gastos
-                    function addExpense(index) {
-                        const product = document.getElementById(`expense-product-${index}`).value;
-                        const unitValue = parseFloat(document.getElementById(`expense-unit-value-${index}`).value);
-                        const quantity = parseInt(document.getElementById(`expense-quantity-${index}`).value);
-                        const paymentMethod = document.getElementById(`expense-payment-method-${index}`).value;
-                        const totalValue = unitValue * quantity;
-
-                        if (!product || isNaN(unitValue) || isNaN(quantity) || unitValue <= 0 || quantity <= 0) return;
-
-                        expenses[index].push({ product, unitValue, quantity, paymentMethod, totalValue });
-                        updateExpenses(index);
-                        updateReport(index);  // Atualiza o relatório
-                        document.getElementById(`expense-product-${index}`).value = '';
-                        document.getElementById(`expense-unit-value-${index}`).value = '';
-                        document.getElementById(`expense-quantity-${index}`).value = '';
-                    }
-
-                    // Função para adicionar vendas
-                    function addSale(index) {
-                        const product = document.getElementById(`sales-product-${index}`).value;
-                        const unitValue = parseFloat(document.getElementById(`sales-unit-value-${index}`).value);
-                        const quantity = parseInt(document.getElementById(`sales-quantity-${index}`).value);
-                        const paymentMethod = document.getElementById(`sales-payment-method-${index}`).value;
-                        const totalValue = unitValue * quantity;
-
-                        if (!product || isNaN(unitValue) || isNaN(quantity) || unitValue <= 0 || quantity <= 0) return;
-
-                        sales[index].push({ product, unitValue, quantity, paymentMethod, totalValue });
-                        updateSales(index);
-                        updateReport(index);  // Atualiza o relatório
-                        document.getElementById(`sales-product-${index}`).value = '';
-                        document.getElementById(`sales-unit-value-${index}`).value = '';
-                        document.getElementById(`sales-quantity-${index}`).value = '';
-                    }
-
-                    // Função para adicionar despesas
-                    function addDebt(index) {
-                        const name = document.getElementById(`debt-name-${index}`).value;
-                        const value = parseFloat(document.getElementById(`debt-value-${index}`).value);
-                        const dueDate = document.getElementById(`debt-due-date-${index}`).value;
-
-                        if (!name || isNaN(value) || value <= 0) return;
-
-                        debts[index].push({ name, value, dueDate });
-                        updateDebts(index);
-                        updateReport(index);  // Atualiza o relatório
-                        document.getElementById(`debt-name-${index}`).value = '';
-                        document.getElementById(`debt-value-${index}`).value = '';
-                        document.getElementById(`debt-due-date-${index}`).value = '';
-                    }
-
-                    // Função para adicionar metas
-                    function addGoal(index) {
-                        const description = document.getElementById(`goal-description-${index}`).value;
-            
-                        if (!description) return;
-            
-                        goals[index].push({ description });
-                        updateGoals(index);
-                    }
-            
-                    
-                    // Funções para excluir itens
-                    function deleteItem(index, expenseIndex) {
-                        expenses[index].splice(expenseIndex, 1); // Remove o item da lista
-                        updateExpenses(index); // Atualiza a interface
-                    }
-                    
-                    function deleteSale(index, saleIndex) {
-                        sales[index].splice(saleIndex, 1); // Remove o item da lista de vendas
-                        updateSales(index); // Atualiza a interface
-                    }
-
-                    function deleteDebt(index, debtIndex) {
-                        debts[index].splice(debtIndex, 1); // Remove a dívida da lista
-                        updateDebts(index); // Atualiza a interface
-                    }
-
-                    function deleteGoal(index, goalIndex) {
-                        goals[index].splice(goalIndex, 1); // Remove a meta da lista
-                        updateGoals(index); // Atualiza a interface
-                    }
-
+                        </div>
+                    </div>`);
+                });
                 
-                    // Funções de atualização para cada seção
-                    function updateExpenses(index) {
-                        const expensesList = document.getElementById(`expenses-list-${index}`);
-                        expensesList.innerHTML = '';
-                        let total = 0;
-                        let pix = 0;
-                        let dinheiro = 0;
-                        let cartao = 0;
+                
 
-                        expenses[index].forEach((expense, expenseIndex) => {
-                            const li = document.createElement('li');
-                            li.classList.add('list-group-item');
-                            li.innerHTML = `
-                                ${expense.product} - R$ ${expense.totalValue.toFixed(2)} (${expense.paymentMethod})
-                                <button class="btn btn-danger btn-sm float-end" onclick="deleteItem(${index}, ${expenseIndex})">Excluir</button>
-                            `;
-                            expensesList.appendChild(li);
-                            total += expense.totalValue;
-                            
-                            if (expense.paymentMethod === 'pix') pix += expense.totalValue;
-                            if (expense.paymentMethod === 'dinheiro') dinheiro += expense.totalValue;
-                            if (expense.paymentMethod === 'cartao') cartao += expense.totalValue;
-                        });
 
-                        document.getElementById(`total-expenses-${index}`).textContent = `R$ ${total.toFixed(2)}`;
-                        document.getElementById(`expense-pix-${index}`).textContent = `R$ ${pix.toFixed(2)}`;
-                        document.getElementById(`expense-dinheiro-${index}`).textContent = `R$ ${dinheiro.toFixed(2)}`;
-                        document.getElementById(`expense-cartao-${index}`).textContent = `R$ ${cartao.toFixed(2)}`;
-                        updateReport(index);  // Atualiza o relatório
-
-                    }
-                    function updateSales(index) {
-                        const salesList = document.getElementById(`sales-list-${index}`);
-                        salesList.innerHTML = '';
-                        let total = 0;
-                        let pix = 0;
-                        let dinheiro = 0;
-                        let cartao = 0;
-                    
-                        sales[index].forEach((sale, saleIndex) => {
-                            const li = document.createElement('li');
-                            li.classList.add('list-group-item');
-                            li.innerHTML = `
-             
-                            ${sale.product} - R$ ${sale.totalValue.toFixed(2)} (${sale.paymentMethod})
-                                <button class="btn btn-danger btn-sm float-end" onclick="deleteSale(${index}, ${saleIndex})">Excluir</button>
-                            `;
-                            salesList.appendChild(li);
-                            total += sale.totalValue;
-                    
-                            if (sale.paymentMethod === 'pix') pix += sale.totalValue;
-                            if (sale.paymentMethod === 'dinheiro') dinheiro += sale.totalValue;
-                            if (sale.paymentMethod === 'cartao') cartao += sale.totalValue;
-                        });
-
-                        document.getElementById(`total-sales-${index}`).textContent = `R$ ${total.toFixed(2)}`;
-                        document.getElementById(`sales-pix-${index}`).textContent = `R$ ${pix.toFixed(2)}`;
-                        document.getElementById(`sales-dinheiro-${index}`).textContent = `R$ ${dinheiro.toFixed(2)}`;
-                        document.getElementById(`sales-cartao-${index}`).textContent = `R$ ${cartao.toFixed(2)}`;
-                        updateReport(index);  // Atualiza o relatório
-                    }
-                    
-                    function updateDebts(index) {
-                        const debtsList = document.getElementById(`debts-list-${index}`);
-                        debtsList.innerHTML = '';
-                        let total = 0;
-                    
-                        debts[index].forEach((debt, debtIndex) => {
-                            const li = document.createElement('li');
-                            li.classList.add('list-group-item');
-                            li.innerHTML = `
-                                ${debt.name} - R$ ${debt.value.toFixed(2)} (Vencimento: ${debt.dueDate})
-                                <button class="btn btn-danger btn-sm float-end" onclick="deleteDebt(${index}, ${debtIndex})">Excluir</button>
-                            `;
-                            debtsList.appendChild(li);
-                            total += debt.value;
-                        });
-                    
-                        document.getElementById(`total-debts-${index}`).textContent = `R$ ${total.toFixed(2)}`;
-                    }
-                    
-                    function updateGoals(index) {
-                        const list = document.getElementById(`goals-list-${index}`);
-                        list.innerHTML = '';
-                        goals[index].forEach((goal, i) => {
-                            list.innerHTML += `
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    ${goal.description}
-                                    <button class="btn btn-danger btn-sm" onclick="deleteGoal(${index}, goals[${index}], ${i})">Excluir</button>
-                                </li>
-                            `;
-                        });
-                    }
-                    
-                    // Função para atualizar os totais do relatório
-                    function updateReport(index) {
-                        // Soma os totais de despesas e vendas
-                        const totalExpenses = expenses[index].reduce((total, expense) => total + expense.totalValue, 0);
-                        const totalSales = sales[index].reduce((total, sale) => total + sale.totalValue, 0);
-                        const totalProfit = totalSales - totalExpenses;
-                    
-                        // Atualiza os elementos HTML do relatório
-                        document.getElementById(`report-total-expenses-${index}`).innerText = `R$ ${totalExpenses.toFixed(2)}`;
-                        document.getElementById(`report-total-sales-${index}`).innerText = `R$ ${totalSales.toFixed(2)}`;
-                        document.getElementById(`report-total-profit-${index}`).innerText = `R$ ${totalProfit.toFixed(2)}`;
-                    }
-                    
-                    // Função para gerar o PDF
-                    function downloadReport(index) {
-                        const { jsPDF } = window.jspdf;
-                        const doc = new jsPDF();
-
-                        const totalExpenses = expenses[index].reduce((total, expense) => total + expense.totalValue, 0);
-                        const totalSales = sales[index].reduce((total, sale) => total + sale.totalValue, 0);
-                        const totalProfit = totalSales - totalExpenses;
-
-                        doc.text(`Relatório de Gastos - Mês ${months[index]}`, 10, 10);
-                        doc.text(`Pix: ${document.getElementById(`expense-pix-${index}`).innerText}`, 10, 20);
-                        doc.text(`Dinheiro: ${document.getElementById(`expense-dinheiro-${index}`).innerText}`, 10, 30);
-                        doc.text(`Cartão: ${document.getElementById(`expense-cartao-${index}`).innerText}`, 10, 40);
-                        doc.text(`Total de Gastos: ${document.getElementById(`total-expenses-${index}`).innerText}`, 10, 50);
-
-                        doc.text(`Relatório de Vendas`, 10, 70);
-                        doc.text(`Pix: ${document.getElementById(`sales-pix-${index}`).innerText}`, 10, 80);
-                        doc.text(`Dinheiro: ${document.getElementById(`sales-dinheiro-${index}`).innerText}`, 10, 90);
-                        doc.text(`Cartão: ${document.getElementById(`sales-cartao-${index}`).innerText}`, 10, 100);
-                        doc.text(`Total de Vendas: ${document.getElementById(`total-sales-${index}`).innerText}`, 10, 110);
-
-                        doc.text(`Lucro: ${document.getElementById(`total-profit-${index}`).innerText}`, 10, 130);
-
-                        doc.save(`relatorio-${months[index]}.pdf`);
-                    }
-
-                </script>
-            </div>
+            </script>
+        </div>
     </div>
 
+    <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
