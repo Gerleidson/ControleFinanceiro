@@ -292,6 +292,10 @@
 
                 goals[index].push({ description });
                 updateGoals(index);
+                
+
+                updateReport(index);  // Atualiza o relatório
+                document.getElementById(`goal-description-${index}`).value = '';
             }
 
 
@@ -315,7 +319,6 @@
             goals[index].splice(goalIndex, 1);
             updateGoals(index);
             }
-
 
 
             // Funções de atualização para cada seção
