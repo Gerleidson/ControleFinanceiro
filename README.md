@@ -1,4 +1,4 @@
-# ControleFinanceiro
+# Controle Financeiro
 Controle Financeiro é uma aplicação web que permite aos usuários gerenciar e visualizar os seus gastos, vendas, lucros, dívidas e metas de forma simples e intuitiva.
 
 A aplicação oferece relatórios detalhados de despesas e vendas, além de gerar relatórios em PDF para facilitar o acompanhamento financeiro.
