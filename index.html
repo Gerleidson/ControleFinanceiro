@@ -451,24 +451,7 @@
                 doc.save(`relatorio-${months[index]}.pdf`);
             }
 
-            // Função para adicionar gastos
-            function addExpense(index) {
-                const product = document.getElementById(`expense-product-${index}`).value;
-                const unitValue = parseFloat(document.getElementById(`expense-unit-value-${index}`).value);
-                const quantity = parseInt(document.getElementById(`expense-quantity-${index}`).value);
-                const paymentMethod = document.getElementById(`expense-payment-method-${index}`).value;
-                const totalValue = unitValue * quantity;
-
-                if (!product || isNaN(unitValue) || isNaN(quantity) || unitValue <= 0 || quantity <= 0) return;
-
-                expenses[index].push({ product, unitValue, quantity, paymentMethod, totalValue });
-                updateExpenses(index);
-                updateReport(index);  // Atualiza o relatório
-                document.getElementById(`expense-product-${index}`).value = '';
-                document.getElementById(`expense-unit-value-${index}`).value = '';
-                document.getElementById(`expense-quantity-${index}`).value = '';
-            }
-
+       
 
             // erro acontece quando voce quer atualizar o total de gastos no relatorio.. 
             //<p><strong>Total de Gastos:</strong> <span id="report-total-expenses-0">R$ 0.00</span></p> esse recebe o valor mais desconfigura os meses
