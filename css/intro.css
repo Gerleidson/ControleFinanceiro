@@ -1,0 +1,96 @@
+/* Resetando algumas propriedades de estilo */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Estilizando o body */
+  body {
+    background-color: #f4f7fc;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Container principal */
+  .container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Card de login */
+  .card {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    padding: 20px;
+  }
+  
+  /* Título do card */
+  .card-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  /* Estilo para os inputs */
+  .form-control {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin-bottom: 15px;
+    transition: border-color 0.3s ease;
+  }
+  
+  /* Foco nos inputs */
+  .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+  }
+  
+  /* Botão de login */
+  .btn {
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Cor do botão de login */
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Link para cadastro */
+  .mt-3 a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .mt-3 a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Adicionando responsividade */
+  @media (max-width: 576px) {
+    .card {
+      width: 90%;
+      padding: 15px;
+    }
+  
+    .card-title {
+      font-size: 20px;
+    }
+  }
+  
