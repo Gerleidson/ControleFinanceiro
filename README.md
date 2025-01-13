@@ -1,43 +1,59 @@
-# Controle Financeiro
-Controle Financeiro é uma aplicação web que permite aos usuários gerenciar e visualizar os seus gastos, vendas, lucros, dívidas e metas de forma simples e intuitiva.
+# Achei - Achados e Perdidos (Documentação)
 
-A aplicação oferece relatórios detalhados de despesas e vendas, além de gerar relatórios em PDF para facilitar o acompanhamento financeiro.
+**AcheiDocs** é uma plataforma simples e eficaz para cadastro de itens perdidos e encontrados. O objetivo principal do site é facilitar a recuperação de itens perdidos, permitindo que você busque documentos e outros objetos ou cadastre o que encontrou para devolução.
 
-## Funcionalidades
-Cadastro de Gastos: Adicione, visualize e exclua diferentes tipos de gastos (pix, dinheiro e cartão).
+---
 
-Cadastro de Vendas: Registre vendas com métodos de pagamento (pix, dinheiro e cartão).
+### Descrição
 
-Controle de Dívidas: Gerencie suas dívidas, com informações sobre o valor e data de vencimento.
+**AcheiDocs** oferece uma solução rápida e prática para ajudar as pessoas a encontrar seus documentos perdidos ou devolver itens encontrados. O sistema permite que qualquer pessoa cadastre ou busque itens como documentos de identidade, CPF, passaporte, entre outros. A interface é simples e intuitiva, com recursos que facilitam a pesquisa e o cadastro de itens perdidos.
 
-Metas de Vendas: Defina e acompanhe suas metas de vendas.
+---
 
-Relatórios Dinâmicos: Gere relatórios mensais sobre gastos, vendas e lucros, com a possibilidade de exportar em PDF.
+### Funcionalidades
 
-Interface Intuitiva: Interface simples e direta, baseada no Bootstrap para tornar o uso mais fácil e acessível.
+- **Buscar Itens Perdidos:**  
+  Pesquise documentos perdidos pelo nome completo da pessoa. Se o item estiver cadastrado no sistema, você poderá visualizar suas informações e entrar em contato com a pessoa que o registrou.
 
-## Como Usar
-Acesse o site da aplicação.
-Cadastre suas despesas, vendas, dívidas e metas.
-Visualize os relatórios detalhados de cada mês, incluindo totais de vendas e gastos.
-Exporte os relatórios em formato PDF, clicando no botão de "Baixar Relatório em PDF".
+- **Cadastro de Itens Perdidos e Encontrados:**  
+  Permite o cadastro de documentos perdidos ou encontrados, com informações detalhadas, como nome, tipo de documento, cidade, estado e telefone para contato. O cadastro permanece por 120 dias após o registro.
 
-Tecnologias Utilizadas
+- **Tabela de Itens Cadastrados:**  
+  Exibe uma lista organizada de itens cadastrados, com status (perdido ou encontrado). Além disso, a tabela suporta navegação entre as páginas, facilitando a visualização de todos os itens.
 
-HTML5: Estrutura da página web.
+- **Fácil Navegação:**  
+  O site é projetado para ser intuitivo, permitindo aos usuários navegar facilmente pelas páginas de cadastro e consulta.
 
-CSS3: Estilização da página, utilizando o Bootstrap.
+---
 
-JavaScript: Lógica de interação e controle dos dados (como o cálculo de totais e atualização dos relatórios).
+### Tecnologias Utilizadas
 
-jsPDF: Para geração de arquivos PDF com os relatórios financeiros.
+- **HTML5:** Estrutura básica e semântica do site.
+- **CSS:** Estilos e layout para a apresentação visual.
+- **JavaScript:** Responsável pela interatividade e dinâmicas da página, como a busca e o cadastro de itens.
+- **Firebase:** Utilizado para armazenamento e recuperação de dados dos itens perdidos e encontrados.
+- **Font Awesome:** Fornece ícones para melhorar a interface do usuário.
 
-Vercel: Hospedagem da aplicação.
+---
 
+### Como Usar
 
-Contribuições
-Sinta-se à vontade para contribuir com o projeto! Se você encontrou um erro ou tem uma sugestão de melhoria, por favor, abra uma issue ou envie um pull request.
+1. **Buscar Itens Perdidos:**  
+   Na página inicial, acesse a seção de busca e digite o nome completo da pessoa cujo documento foi perdido. Clique em "Buscar" para procurar o item.
 
+2. **Cadastrar Itens:**  
+   Caso você tenha encontrado um item, você pode cadastrá-lo informando os seguintes dados:
+   - Tipo de documento (Achado ou Perdido)
+   - Nome completo
+   - Tipo de documento (RG, CPF, Passaporte, etc.)
+   - Telefone para contato
+   - Cidade e Estado onde o item foi encontrado ou perdido
 
-Licença
-Este projeto está sob a licença MIT - veja o arquivo LICENSE para mais detalhes.
+3. **Visualizar Itens Cadastrados:**  
+   Na página de itens cadastrados, você pode consultar a lista de documentos encontrados ou perdidos. A tabela mostra informações como nome, tipo de documento, cidade, estado e status (perdido/encontrado). Além disso, é possível navegar entre as páginas para visualizar mais itens.
+
+---
+
+### Licença
+
+Este projeto está sob a **licença MIT**. Para mais detalhes, consulte o arquivo [LICENSE](LICENSE).
