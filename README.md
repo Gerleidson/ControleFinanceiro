@@ -52,6 +52,8 @@
 3. **Visualizar Itens Cadastrados:**  
    Na página de itens cadastrados, você pode consultar a lista de documentos encontrados ou perdidos. A tabela mostra informações como nome, tipo de documento, cidade, estado e status (perdido/encontrado). Além disso, é possível navegar entre as páginas para visualizar mais itens.
 
+
+[![](https://mermaid.ink/img/pako:eNqlU7tuwzAM_BVBUx9J0K4eMmUuAhhZCi2sxDhCLdHQY2iD_HtpN06cRi1aVBN1xyN1lLSXmgzKSuoWYlxZaAI45QWvARGbmCFYEvtPsF_3MQXrG-HJ4TWasMUt-QKjrQFTwDEmMFSoZDtakc4OfSrQpkBpMMA0hJPu5nZCv-SoC9xB-anlE18y3R_qd2eZTGkdqAsWUz_J_8-F4ZTjBA_Y2B9ccza09h1CPQi_cV1zCXRw4flv41xTeGKzFyktV52kXDcf35eSj0qK-ZyDh8XijuPzNVRidCiWX1XH5EHYVxhtVCIn27seJedy163OorGRIYFOLOVMOgwOrOEvMkxGybRDfvey4tBAeFVS-QPnQU5Uv3ktqxQyzmSg3OxktYU28i53BhIe_9cJ7cA_E437wwdNcRt6?type=png)](https://mermaid.live/edit#pako:eNqlU7tuwzAM_BVBUx9J0K4eMmUuAhhZCi2sxDhCLdHQY2iD_HtpN06cRi1aVBN1xyN1lLSXmgzKSuoWYlxZaAI45QWvARGbmCFYEvtPsF_3MQXrG-HJ4TWasMUt-QKjrQFTwDEmMFSoZDtakc4OfSrQpkBpMMA0hJPu5nZCv-SoC9xB-anlE18y3R_qd2eZTGkdqAsWUz_J_8-F4ZTjBA_Y2B9ccza09h1CPQi_cV1zCXRw4flv41xTeGKzFyktV52kXDcf35eSj0qK-ZyDh8XijuPzNVRidCiWX1XH5EHYVxhtVCIn27seJedy163OorGRIYFOLOVMOgwOrOEvMkxGybRDfvey4tBAeFVS-QPnQU5Uv3ktqxQyzmSg3OxktYU28i53BhIe_9cJ7cA_E437wwdNcRt6)
 ---
 
 ### Licença
