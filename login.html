@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — Controle Financeiro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0c0f;
+      --surface: #111418;
+      --surface2: #181c22;
+      --border: #1e2430;
+      --accent: #1a9aff;
+      --accent2: #00e5b0;
+      --danger: #ff4d6a;
+      --text: #e8edf5;
+      --text2: #7a8499;
+      --text3: #4a5568;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Background decoration */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -200px; left: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(26,154,255,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,229,176,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px;
+      width: 100%;
+      max-width: 420px;
+      position: relative;
+      z-index: 1;
+    }
+    .card-logo {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(26,154,255,0.15), rgba(0,229,176,0.1));
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 24px;
+    }
+    .card-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .card-subtitle { font-size: 0.9rem; color: var(--text2); margin-bottom: 32px; }
+    .form-group { margin-bottom: 18px; }
+    label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text2); margin-bottom: 7px; }
+    input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      padding: 12px 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      outline: none;
+    }
+    input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(26,154,255,0.1); }
+    input::placeholder { color: var(--text3); }
+    .btn-submit {
+      width: 100%;
+      padding: 13px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      margin-top: 8px;
+    }
+    .btn-submit:hover { background: #0080e0; }
+    .btn-submit:active { transform: scale(0.99); }
+    .card-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: var(--text2);
+    }
+    .card-link a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    .card-link a:hover { text-decoration: underline; }
+    .error-msg {
+      background: rgba(255,77,106,0.1);
+      border: 1px solid rgba(255,77,106,0.3);
+      color: var(--danger);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="card-logo">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+    </div>
+    <div class="card-title">Bem-vindo</div>
+    <div class="card-subtitle">Faça login para acessar seu controle financeiro</div>
+    
+    <div class="error-msg" id="error-msg">Usuário ou senha incorretos.</div>
+
+    <div class="form-group">
+      <label for="username">Usuário</label>
+      <input type="text" id="username" placeholder="Digite seu usuário">
+    </div>
+    <div class="form-group">
+      <label for="password">Senha</label>
+      <input type="password" id="password" placeholder="Digite sua senha">
+    </div>
+    <button class="btn-submit" onclick="handleLogin()">Entrar</button>
+    <div class="card-link">
+      Ainda não tem conta? <a href="cadastro.html">Cadastre-se</a>
+    </div>
+  </div>
+
+  <script>
+    function handleLogin() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const err = document.getElementById('error-msg');
+      
+      if (!username || !password) {
+        err.textContent = 'Preencha todos os campos.';
+        err.style.display = 'block';
+        return;
+      }
+
+      const users = JSON.parse(localStorage.getItem('cf_users') || '[]');
+      const user = users.find(u => u.username === username && u.password === password);
+
+      if (user) {
+        localStorage.setItem('cf_logged', JSON.stringify(user));
+        window.location.href = 'index.html';
+      } else {
+        err.textContent = 'Usuário ou senha incorretos.';
+        err.style.display = 'block';
+      }
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Enter') handleLogin(); });
+  </script>
+</body>
+</html>
